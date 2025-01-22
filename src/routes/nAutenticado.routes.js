@@ -1,11 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPersonal from "../pages/LoginPersonal/LoginPersonal";
+import CadastroPersonal from "../pages/CadastroPersonal/CadastroPersonal";
 
 export default function Nautentificado() {
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" />
+        <Route path="/"  element={<LoginPersonal/>}/>
+        <Route path="/cadastro/personal"  element={<CadastroPersonal/>}/>
       </Routes>
     </BrowserRouter>
   )
