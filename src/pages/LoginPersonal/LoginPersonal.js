@@ -1,18 +1,38 @@
-import React, {  useState } from 'react';
-import { Link, } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate, } from 'react-router-dom';
 import './LoginPersonal.css';
 import '../../style/global.css';
+import { AutenticadoContexto } from '../../context/authContexts';
+import { toast } from 'react-toastify';
 
 export default function LoginPersonal() {
+  const { loginEntrada, verificarToken } = useContext(AutenticadoContexto)
+  verificarToken()
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const navigate = useNavigate()
+
+  async function dadosLogin(e) {
+    e.preventDefault();
+    
+  
+    try {
+      const loginSucesso = await loginEntrada(email, senha);
+      if (loginSucesso) {
+        navigate('/DashBoardPersonal');
+      } 
+    } catch (err) {
+      toast.error('Erro ao fazer login. Tente novamente!');
+    }
+  }
 
   return (
     <div className="container-pai-cadastro-login-personal">
       <div className="login-cadastro-personal-form-container">
         <h2 >Login para Personal</h2>
-        <form className="login-personal-form" >
+        <form className="login-personal-form"  onSubmit={dadosLogin}>
           <div className="login-personal-input-group">
             <label htmlFor="email" className="login-cadastro-personal-label">E-mail</label>
             <input
