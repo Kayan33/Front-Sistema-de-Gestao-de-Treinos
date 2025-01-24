@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
-import Autenticado from './autenticado.routes';
-import NAutenticado from './nAutenticado.routes';
+import Autenticado from './autenticado.routes'
+import NAutenticado from './nAutenticado.routes'
+import { AutenticadoContexto } from '../context/authContexts'
+
 
 export default function Rotas() {
-    const isAutenticado = false; 
+    const { autenticado } = useContext(AutenticadoContexto)
+
     return (
-        isAutenticado ? <Autenticado /> : <NAutenticado />
-    );
+        autenticado === true ? <Autenticado /> : <NAutenticado />
+    )
 }

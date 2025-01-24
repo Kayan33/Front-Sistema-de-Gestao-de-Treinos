@@ -1,14 +1,15 @@
 import { ToastContainer } from "react-toastify";
 import Rotas from "./routes";
+import AuthProvider from "./context/authContexts";
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <Rotas/>
       <ToastContainer
           autoClose={5000}
         />
-    </div>
+    </AuthProvider>
   );
 }
 
