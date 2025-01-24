@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import apiLocal from "./apiLocal";
+import apiLocal from "./apilocal/apiLocal";
 
 export const Personalapi = {
   CadastrarPersonal: async ({ nome, telefone, email, CREF, sexo, senha, aluno }) => {
@@ -26,4 +26,17 @@ export const Personalapi = {
       throw error;
     }
   },
+
+  alteracao: async(aluno,ID)=>{
+    try {
+      await apiLocal.put(`/AlterarDadosPersonal/${ID}`,{
+        aluno: aluno? [aluno]:[]
+      })
+      toast.success('Cadastro efetuado com sucesso');
+    } catch (error) {
+      console.error('Erro ao cadastrar aluno:', error);
+      toast.error('Erro ao cadastrar aluno.');
+      throw error;
+    }
+  }
 };
