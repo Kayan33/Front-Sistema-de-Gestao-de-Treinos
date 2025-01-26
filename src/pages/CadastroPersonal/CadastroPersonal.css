@@ -1,46 +1,46 @@
-/* Estilos gerais */
+@import url("../../style/variables.css");
+@import url("../../style/global.css");
+
 .cadastro-personal-form {
   display: grid;
-  grid-template-columns: 1fr;  /* Coluna única por padrão */
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   padding: 1rem;
-  max-width: 600px; /* Largura máxima do formulário */
-  margin: 0 auto; /* Centraliza o formulário */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Campos de input */
-.cadastro-personal-input, .cadastro-personal-select {
+.cadastro-personal-input,
+.cadastro-personal-select {
   padding: 0.8rem;
   margin-bottom: 1.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
-  width: 100%; /* Garante que os campos ocupem toda a largura disponível */
+  font-size: var(--fonte-texto);
+  width: 100%;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Ajuste do espaço entre inputs */
 .cadastro-input {
   margin-bottom: 1rem;
 }
 
-/* Estilo do botão */
 .cadastro-personal-btn {
-  background-color: #4CAF50;
+  background-color: var(--cor-verde);
   color: white;
-  font-size: 1.1rem;
+  font-size: var(--fonte-texto);
   padding: 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  width: 100%; /* Garante que o botão ocupe toda a largura disponível */
-  display: block; /* Torna o botão um bloco de nível de bloco */
-  margin: 0 auto; /* Centraliza o botão horizontalmente */
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 .cadastro-personal-btn:hover {
-  background-color: #45a049;
+  background-color: var(--cor-verde-claro);
   transform: translateY(-2px);
 }
 
@@ -48,42 +48,40 @@
   transform: translateY(2px);
 }
 
-/* Responsividade para telas médias (Tablets, desktops menores) */
 @media (min-width: 768px) {
   .cadastro-personal-form {
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas para telas maiores */
-    gap: 2rem; /* Espaçamento maior entre os campos */
-  }
-
-  .cadastro-personal-input, .cadastro-personal-select {
-    grid-column: span 1; /* Cada campo ocupa uma coluna */
-  }
-
-  .cadastro-personal-btn {
-    grid-column: span 2; /* O botão ocupa as duas colunas */
-  }
-}
-
-/* Responsividade para telas maiores (Desktops e telas muito grandes) */
-@media (min-width: 1024px) {
-  .cadastro-personal-form {
-    max-width: 800px; /* Aumenta a largura máxima do formulário */
-  }
-}
-
-/* Responsividade para telas menores (Smartphones) */
-@media (max-width: 480px) {
-  .cadastro-personal-form {
-    padding: 0.5rem; /* Reduz o espaçamento interno */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   .cadastro-personal-input,
   .cadastro-personal-select {
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte para telas pequenas */
+    grid-column: span 1;
   }
 
   .cadastro-personal-btn {
-    font-size: 1rem; /* Ajusta o tamanho da fonte do botão */
-    padding: 0.8rem; /* Ajusta o padding do botão */
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cadastro-personal-form {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastro-personal-form {
+    padding: 0.5rem;
+  }
+
+  .cadastro-personal-input,
+  .cadastro-personal-select {
+    font-size: var(--fonte-texto);
+  }
+
+  .cadastro-personal-btn {
+    font-size: var(--fonte-texto);
+    padding: 0.8rem;
   }
 }
