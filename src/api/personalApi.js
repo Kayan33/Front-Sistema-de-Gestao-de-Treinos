@@ -2,7 +2,15 @@ import { toast } from "react-toastify";
 import apiLocal from "./apilocal/apiLocal";
 
 export const Personalapi = {
-  CadastrarPersonal: async ({ nome, telefone, email, CREF, sexo, senha, aluno }) => {
+  CadastrarPersonal: async ({
+    nome,
+    telefone,
+    email,
+    CREF,
+    sexo,
+    senha,
+    aluno,
+  }) => {
     try {
       const response = await apiLocal.post(`/CadastrarPersonal`, {
         nome: nome,
@@ -14,29 +22,46 @@ export const Personalapi = {
         aluno,
       });
 
-     
-        toast.success("Cadastro feito com sucesso!");
-      
+      toast.success("Cadastro feito com sucesso!");
 
       return response.data;
     } catch (error) {
       toast.error(`Erro ao cadastrar o personal`);
       console.log(error);
-      
+
       throw error;
     }
   },
 
-  alteracao: async(aluno,ID)=>{
+  alteracao: async (aluno, ID) => {
     try {
-      await apiLocal.put(`/AlterarDadosPersonal/${ID}`,{
-        aluno: aluno? [aluno]:[]
-      })
-      toast.success('Cadastro efetuado com sucesso');
+      await apiLocal.put(`/AlterarDadosPersonal/${ID}`, {
+        aluno: aluno ? [aluno] : [], // Envia o aluno como um array, se definido
+      });
+      toast.success("Cadastro efetuado com sucesso");
     } catch (error) {
-      console.error('Erro ao cadastrar aluno:', error);
-      toast.error('Erro ao cadastrar aluno.');
+      console.error("Erro ao cadastrar aluno:", error);
+      toast.error("Erro ao cadastrar aluno.");
       throw error;
     }
-  }
+  },
+
+  consultaUnica: async (ID,token) => {
+    try {
+     const resposta = await apiLocal.post(`/ConsultarPersonalUnico/${ID}`, {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+     );
+
+     return resposta
+      
+    } catch (error) {
+      console.error("Erro ao buscar personal:", error);
+      toast.error("Erro ao buscar personal.");
+      throw error;
+    }
+  },
 };
