@@ -46,15 +46,27 @@ export default function AuthProvider({ children }) {
       localStorage.setItem("@token", JSON.stringify(resposta.data.token));
       localStorage.setItem("@nome", JSON.stringify(resposta.data.nome));
       setTokenT(true);
+      toast.success('Login realizado com sucesso')
     } catch (err) {
       toast.error(err.response.data.error);
       return false;
     }
   }
 
+  function logout() {
+    localStorage.removeItem("@token");
+    localStorage.removeItem("@id")
+    localStorage.removeItem("nome")
+
+    setTokenT(false)
+    setToken("")
+
+    toast.success('Deslogado com sucesso')
+  }
+
   return (
     <AutenticadoContexto.Provider
-      value={{ autenticado, loginEntrada, verificarToken, token }}
+      value={{ autenticado, loginEntrada, verificarToken, token,logout }}
     >
       {children}
     </AutenticadoContexto.Provider>
