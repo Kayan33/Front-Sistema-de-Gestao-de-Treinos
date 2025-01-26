@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPersonal from "../pages/LoginPersonal/LoginPersonal";
-import CadastroPersonal from "../pages/CadastroPersonal/CadastroPersonal";
+import LoginPersonal from "../pages/personal/LoginPersonal/LoginPersonal";
+import CadastroPersonal from "../pages/personal/CadastroPersonal/CadastroPersonal";
 
 export default function Nautentificado() {
 

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DashBoardPersonal from "../pages/DashBoardPersonal/DashBoardPersonal";
+import DashBoardPersonal from "../pages/personal/DashBoardPersonal/DashBoardPersonal";
 
 export default function Autentificado() {
   return (

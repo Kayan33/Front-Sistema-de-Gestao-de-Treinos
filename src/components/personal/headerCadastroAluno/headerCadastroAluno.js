@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Popup from "../popupConectaAluno/popupConectaAluno";
-import { Personalapi } from '../../api/personalApi';
+import { Personalapi } from '../../../api/personalApi';
 import './headerCadastroAluno.css'; 
 
 const HeaderCadastroAluno = ({ onAlunoCadastrado }) => {

@@ -1,0 +1,87 @@
+@import url("../../../style/variables.css");
+@import url("../../../style/global.css");
+
+.cadastro-personal-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cadastro-personal-input,
+.cadastro-personal-select {
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: var(--fonte-texto);
+  width: 100%;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cadastro-input {
+  margin-bottom: 1rem;
+}
+
+.cadastro-personal-btn {
+  background-color: var(--cor-verde);
+  color: white;
+  font-size: var(--fonte-texto);
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.cadastro-personal-btn:hover {
+  background-color: var(--cor-verde-claro);
+  transform: translateY(-2px);
+}
+
+.cadastro-personal-btn:active {
+  transform: translateY(2px);
+}
+
+@media (min-width: 768px) {
+  .cadastro-personal-form {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .cadastro-personal-input,
+  .cadastro-personal-select {
+    grid-column: span 1;
+  }
+
+  .cadastro-personal-btn {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cadastro-personal-form {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastro-personal-form {
+    padding: 0.5rem;
+  }
+
+  .cadastro-personal-input,
+  .cadastro-personal-select {
+    font-size: var(--fonte-texto);
+  }
+
+  .cadastro-personal-btn {
+    font-size: var(--fonte-texto);
+    padding: 0.8rem;
+  }
+}

@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "./DashBoardPersonal.css";
-import Header from "../../components/header/header";
-import HeaderCadastroAluno from "../../components/headerCadastroAluno/headerCadastroAluno";
-import apiLocal from "../../api/apilocal/apiLocal";
-import { AutenticadoContexto } from "../../context/authContexts";
-import { Personalapi } from "../../api/personalApi";
+import Header from "../../../components/personal/header/header";
+import HeaderCadastroAluno from "../../../components/personal/headerCadastroAluno/headerCadastroAluno";
+import { AutenticadoContexto } from "../../../context/authContexts";
+import { Personalapi } from "../../../api/personalApi";
 
 export default function DashBoardPersonal() {
   const [dadosUsuarios, setDadosUsuarios] = useState(null);

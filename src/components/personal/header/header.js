@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css'; 
-import { AutenticadoContexto } from '../../context/authContexts';
+import { AutenticadoContexto } from '../../../context/authContexts';
 
 export default function Header() {
 const{logout} = useContext(AutenticadoContexto)
