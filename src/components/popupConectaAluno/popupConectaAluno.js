@@ -1,0 +1,37 @@
+import './popupConectaAluno.css'; 
+const Popup = ({ isOpen, togglePopup, onSubmit, aluno, setAluno }) => {
+    return (
+      isOpen && (
+        <div className="popup-overlay" onClick={togglePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={togglePopup}>
+              &times;
+            </button>
+  
+            <div className="cadastrar-aluno-container">
+              <form className="cadastrar-aluno-form" onSubmit={onSubmit}>
+                <h2>Cadastrar Aluno</h2>
+                <p>Peça pro aluno:</p>
+                <p>*Baixe o app e cadastre-se</p>
+                <p>*Aceite a solicitação de treino no app</p>
+                <label className="form-label" htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input"
+                  placeholder="Digite o email do aluno"
+                  value={aluno}
+                  onChange={(e) => setAluno(e.target.value)}
+                  required
+                />
+                <button type="submit" className="form-button">Cadastrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )
+    );
+  };
+  
+  export default Popup;
+  
