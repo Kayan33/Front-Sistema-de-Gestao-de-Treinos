@@ -1,23 +1,22 @@
 :root {
-  /* Paleta de Cores Primárias */
-  --primary-color: #007bff; /* Azul principal */
-  --primary-color-hover: #0056b3; /* Azul mais escuro para hover */
-  --secondary-color: #6c757d; /* Cinza secundário */
-
-  /* Paleta de Cores de Fundo */
-  --background-color: #f8f9fa; /* Fundo claro */
-  --background-dark: #343a40; /* Fundo escuro */
-
-  /* Paleta de Cores de Texto */
-  --text-color: #212529; /* Cor principal do texto */
-  --text-muted: #6c757d; /* Texto desativado */
-
-  /* Cores de Alerta */
-  --success-color: #28a745; /* Verde para sucesso */
-  --error-color: #dc3545; /* Vermelho para erro */
-  --warning-color: #ffc107; /* Amarelo para aviso */
+  /* Cores */
+  --cor-primaria: #004aad;
+  --cor-primaria-escura: #001f5c;
+  --cor-branca: #ffffff;
+  --cor-preta: #333333;
+  --cor-cinza-clara: #f9f9f9;
+  --cor-cinza: #dddddd;
+  --cor-cinza-escura: #555555;
+  --cor-verde: #45a049;
+  --cor-verde-claro: #4CAF50;
+  --cor-vermelho-forte: #FF0000;
 
   /* Gradientes */
-  --gradient-primary: linear-gradient(90deg, #007bff, #0056b3);
-}
+  --gradiente-primario: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
 
+  /* Fontes */
+  --fonte-titulo: 1.8rem;
+  --fonte-subtitulo: 1.5rem;
+  --fonte-texto: 1rem;
+  --fonte-destaque: 1.2rem;
+}
