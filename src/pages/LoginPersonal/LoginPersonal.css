@@ -1,18 +1,21 @@
-/* Container geral */
+@import url('../../style/variables.css');
+@import url('../../style/global.css');
+
+
 .container-pai-cadastro-login-personal{
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f4f4f9;
+  background-color: var(--cor-branca);
 }
 
-/* Caixa do formulário */
+
 .login-cadastro-personal-form-container{
   width: 100%;
   max-width: 500px;
-  background: linear-gradient(135deg, #004aad, #001f5c);
+  background: var(--gradiente-primario);
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -20,21 +23,18 @@
   text-align: center;
 }
 
-/* Título */
 .login-cadastro-personal-form-container h2 {
-  font-size: 2.2rem;
+  font-size: var(--fonte-titulo);
   margin-bottom: 2rem;
   font-weight: bold;
 }
 
-/* Formulário */
 .login-personal-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Grupo de entrada */
 .login-personal-input-group {
   display: flex;
   flex-direction: column;
@@ -42,45 +42,44 @@
   align-items: flex-start;
 }
 
-/* Rótulo dos campos */
+
 .login-cadastro-personal-label {
-  font-size: 1rem;
-  color: #fff;
+  font-size: var(--fonte-texto);
+  color: var(--cor-branca);
   font-weight: 600;
 }
 
-/* Campos de input */
+
 .login-cadastro-personal-input-select{
   padding: 1rem;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: #f0f8ff;
+  background-color: var(--cor-cinza-clara);
   transition: border-color 0.3s ease, background-color 0.3s ease;
   
 }
 
 .login-cadastro-personal-input-select:focus {
-  border-color: #00b4d8;
   outline: none;
-  background-color: #e0f7fa;
+  background-color: var(--cor-cinza-clara);
 }
 
-/* Botão */
+
 .login-personal-btn {
-  background-color: #00b4d8;
-  color: white;
+  background-color: var(--cor-verde);
+  color: var(--cor-branca);
   padding: 1rem;
   border: none;
   border-radius: 4px;
-  font-size: 1.1rem;
+  font-size: var(--fonte-destaque);
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .login-personal-btn:hover {
-  background-color: #0077b6;
+  background-color: var(--cor-verde-claro);
   transform: translateY(-2px);
 }
 
@@ -88,20 +87,20 @@
   transform: translateY(2px);
 }
 
-/* Link de registro */
+
 .login-personal-register-link {
   margin-top: 1rem;
-  font-size: 1rem;
-  color: #fff;
+  font-size: var(--fonte-texto);
+  color: var(--cor-branca);
 }
 
 .login-personal-link {
-  color: #f1f1f1;
+  color: var(--cor-cinza-clara);
   text-decoration: underline;
 }
 
 .login-personal-link:hover {
-  color: #f0f0f0;
+  color: var(--cor-cinza);
 }
 
 
@@ -110,7 +109,4 @@
     padding: 1.5rem;
   }
 
-  .login-personal-title {
-    font-size: 1.8rem;
-  }
 }
