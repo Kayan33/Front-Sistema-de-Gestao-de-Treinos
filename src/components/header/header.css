@@ -1,0 +1,38 @@
+@import url('../../style/variables.css');
+@import url('../../style/global.css');
+
+
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.dashboard-navigation {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard-navigation a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.dashboard-navigation a:hover {
+  text-decoration: underline;
+}
+
+.logout{
+  color: var(--cor-vermelho-forte);
+}
+
