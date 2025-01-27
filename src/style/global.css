@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+li,a{
+  list-style: none;
+}
+
 body{
   font-family: Arial, sans-serif;
 }
