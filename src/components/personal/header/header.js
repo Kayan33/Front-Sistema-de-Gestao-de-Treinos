@@ -8,12 +8,12 @@ const{logout} = useContext(AutenticadoContexto)
 
   return (
     
-      <header className="dashboard-header">
+      <header className="header-personal">
         <h1>Bem-vindo </h1>
-        <div className="dashboard-navigation">
-          <Link to="/assinatura">Assinatura</Link>
-          <Link to="/ajuda">Ajuda</Link>
-          <Link to="/perfil">Perfil</Link>
+        <div className="navigation-personal">
+          <Link to="/assinatura" className='navigation-personal-link'>Assinatura</Link>
+          <Link to="/ajuda" className='navigation-personal-link'>Ajuda</Link>
+          <Link to="/perfil" className='navigation-personal-link'>Perfil</Link>
 
         <Link className='logout' onClick={logout}>logout</Link>
         </div>

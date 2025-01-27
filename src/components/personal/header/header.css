@@ -4,7 +4,7 @@
 
 
 
-.dashboard-header {
+.header-personal {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,27 +12,31 @@
   border-bottom: 2px solid #ccc;
 }
 
-.dashboard-header h1 {
-  font-size: 2rem;
-  color: #333;
+.header-personal h1 {
+  font-size: var( --fonte-titulo);
+  color: var(--cor-preta);
 }
 
-.dashboard-navigation {
+.navigation-personal {
   display: flex;
   gap: 20px;
 }
 
-.dashboard-navigation a {
+.navigation-personal-link{
   text-decoration: none;
-  color: #007bff;
+  color: var(--cor-primaria);
   font-weight: bold;
 }
 
-.dashboard-navigation a:hover {
-  text-decoration: underline;
-}
 
 .logout{
   color: var(--cor-vermelho-forte);
+  text-decoration: none;
+  font-weight: bold;
 }
+
+.navigation-personal-link:hover,.logout:hover  {
+  text-decoration: underline;
+}
+
 
