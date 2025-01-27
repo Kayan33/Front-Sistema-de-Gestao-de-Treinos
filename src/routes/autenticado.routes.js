@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashBoardPersonal from "../pages/personal/DashBoardPersonal/DashBoardPersonal";
+import ListaAlunos from "../pages/ListaAlunos/ListaAlunos";
 
 export default function Autentificado() {
   return (
@@ -7,6 +8,7 @@ export default function Autentificado() {
       <Routes>
         <Route path="/DashBoardPersonal" element={<DashBoardPersonal/>}/>
         <Route path="/" element={<DashBoardPersonal/>}/>
+        <Route path="/cliente/lista" element={<ListaAlunos/>}/>
       </Routes>
     </BrowserRouter>
   )
