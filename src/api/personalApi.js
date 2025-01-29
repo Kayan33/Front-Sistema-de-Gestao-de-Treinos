@@ -39,10 +39,10 @@ export const Personalapi = {
         aluno: aluno ? [aluno] : [], // Envia o aluno como um array, se definido
       });
       toast.success("Cadastro efetuado com sucesso");
-    } catch (error) {
-      console.error("Erro ao cadastrar aluno:", error);
-      toast.error("Erro ao cadastrar aluno.");
-      throw error;
+    } catch (err) {
+      console.error("Erro ao cadastrar aluno:", err);
+      toast.error(err.response.data.error);
+      throw err;
     }
   },
 
@@ -55,7 +55,6 @@ export const Personalapi = {
         },
       }
      );
-
      return resposta
       
     } catch (error) {
@@ -64,4 +63,20 @@ export const Personalapi = {
       throw error;
     }
   },
+
+  consultaPcomA: async(ID,aluno,token) =>{
+    try {
+      const resposta = await apiLocal.post(`/consultarPersonalComAlunoUnico/${ID}/${aluno}/`,{},
+      {
+        headers:{
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      return resposta
+    } catch (err) {
+      console.error("Erro ao cadastrar aluno:", err);
+      toast.error(err.response.data.error);
+      throw err;
+    }
+  }
 };
