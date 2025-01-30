@@ -1,0 +1,76 @@
+  /* Lista de treinos */
+  .container-aluno-unico-lista-treino {
+    margin-top: 2rem;
+  }
+  
+  .container-aluno-unico-treino {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--cor-cinza-clara);
+    border: 1px solid var(--cor-cinza);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .container-aluno-unico-lista-treino :hover{
+    background: var(--cor-cinza-clara);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .container-aluno-unico-treino h1 {
+    font-size: var(--fonte-subtitulo);
+    color: var(--cor-preta);
+    
+  }
+
+/* Botão */
+
+.BTN-adiciona {
+  background: var(--cor-verde);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: var(--fonte-texto);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.BTN-adiciona:hover {
+  background: var(--cor-verde);
+  opacity: 0.8;
+}
+
+.BTN-remove {
+  background: var(--cor-vermelho-forte);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: var(--fonte-texto);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.BTN-remove:hover {
+  background: var(--cor-vermelho-forte);
+  opacity: 0.8;
+}
+
+.BTN-link-redirecionamento{
+    background: var(--gradiente-primario);
+    color: var(--cor-branca);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.4rem;
+    font-size: var(--fonte-texto);
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
