@@ -8,11 +8,11 @@ export const treinoAPI = {
           const response = await apiLocal.post(`/treino/${aluno}/${ID}`, {
             nome_treino,
           },
-          // {
-          //   headers:{
-          //     Authorization: `Bearer ${token}`,
-          //   }
-          // }
+          {
+            // headers:{
+            //   Authorization: `Bearer ${token}`,
+            // }
+          }
           );
       
           toast.success("Cadastro feito com sucesso!");
@@ -25,6 +25,23 @@ export const treinoAPI = {
         }
       },
       
+      consultaUnica: async (ID) => {
+        try {
+         const resposta = await apiLocal.get(`/consultartreinolUnico/${ID}`, {},
+          {
+            // headers: {
+            //   Authorization: `Bearer ${token}`,
+            // },
+          }
+         );
+         return resposta
+          
+        } catch (err) {
+          console.error("Erro ao consultar treino:", err);
+          toast.error(err.response?.data?.error || "Erro ao consultar treino. Tente novamente.");
+          throw err;
+        }
+      },
 
   
 };
