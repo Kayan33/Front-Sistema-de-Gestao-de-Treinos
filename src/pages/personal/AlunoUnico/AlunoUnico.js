@@ -4,13 +4,18 @@ import { Personalapi } from "../../../api/personalApi";
 import { useContext, useEffect, useState } from "react";
 import { AutenticadoContexto } from "../../../context/authContexts";
 import "./AlunoUnico.css";
+import "../../../style/classes.css";
 import PopupCadastrarTreino from "../../../components/personal/popupCadastrarTreino/popupCadastrarTreino";
 import { treinoAPI } from "../../../api/treinoApi";
+import ConsultaTodosTreinos from "../../../components/personal/ConsultaTodosTreinos/ConsultaTodosTreinos";
+import ConsultaTreinoComExercicios from "../../../components/personal/ConsultaTreinoComExercicios/ConsultaTreinoComExercicios";
 
 export default function AlunoUnico() {
   const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [nome_treino, setNome_treino] = useState("");
+  const [abrir, setAbrir] = useState(false);
+  const [treinoSelecionado, setTreinoSelecionado] = useState(null); // Track selected treino
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -24,7 +29,6 @@ export default function AlunoUnico() {
 
   async function consultarDadosUsuarios() {
     const resposta = await Personalapi.consultaPcomA(ID, aluno, token);
-
     setDadosAluno(resposta.data?.aluno?.[0] || { aluno: [] });
   }
 
@@ -39,46 +43,72 @@ export default function AlunoUnico() {
     await consultarDadosUsuarios();
   };
 
+  const handleTreinoClick = (treino) => {
+  
+    setTreinoSelecionado(treinoSelecionado?.id === treino.id ? null : treino);
+  };
+
   return (
     <>
-      {dadosAluno.length === 0 ? 
+      {dadosAluno.length === 0 ? (
         <div>zero dados</div>
-       : 
+      ) : (
         <div className="dashboard-personal-container">
           <Header />
-
           <div className="container-aluno-unico">
-            <h3>{dadosAluno.nome}</h3>
-            <div className="container-aluno-unico-links">
-              <button
-                onClick={togglePopup}
-                className="container-aluno-unico-links link"
-              >
-                Cadastrar Treino
-              </button>
+            {abrir ? (
+              <div>
+                <ConsultaTodosTreinos setAbrir={setAbrir} />
+              </div>
+            ) : (
+              <>
+                <h3>{dadosAluno.nome}</h3>
+                <div className="container-aluno-unico-links">
+                  <button onClick={togglePopup} className="BTN-link-redirecionamento">
+                    Cadastrar Treino
+                  </button>
 
-              <PopupCadastrarTreino
-                isOpen={isPopupOpen}
-                togglePopup={togglePopup}
-                nome_treino={nome_treino}
-                setNome_treino={setNome_treino}
-                onSubmit={CadastroTreino}
-              />
-              <Link to={`/`} className="container-aluno-unico-links link">
-                consultar Treino
-              </Link>
-            </div>
-            <div className=" container-aluno-unico-lista-treino">
-              {dadosAluno.treino?.map((treino) => (
-                <div className="container-aluno-unico-treino" key={treino.id}>
-                  <h1>{treino.nome_treino}</h1>
-                  <button>-</button>
+                  <PopupCadastrarTreino
+                    isOpen={isPopupOpen}
+                    togglePopup={togglePopup}
+                    nome_treino={nome_treino}
+                    setNome_treino={setNome_treino}
+                    onSubmit={CadastroTreino}
+                  />
+
+                  <button onClick={() => setAbrir(true)} className="BTN-link-redirecionamento">
+                    Consultar Treino
+                  </button>
                 </div>
-              ))}
-            </div>
+
+                <div className="container-aluno-unico-lista-treino">
+                  {dadosAluno.treino?.length > 0 ? (
+                    dadosAluno.treino.map((treino) => (
+                      <div
+                        className={`container-aluno-unico-treino ${
+                          treinoSelecionado?.id === treino.id ? "expandido" : ""
+                        }`}
+                        key={treino.id}
+                        onClick={() => handleTreinoClick(treino)} 
+                      >
+                        {treinoSelecionado?.id === treino.id ? (
+                          <div>
+                            <ConsultaTreinoComExercicios treinoId={treino.id} /> 
+                          </div>
+                        ) : (
+                          <h1>{treino.nome_treino}</h1>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <p>Nenhum treino cadastrado.</p>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
-      }
+      )}
     </>
   );
 }
