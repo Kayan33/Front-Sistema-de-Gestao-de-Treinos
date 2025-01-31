@@ -59,6 +59,9 @@ export default function LoginPersonal() {
         <p className="login-personal-register-link">
           Não tem uma conta? <Link to="/cadastro/personal" className="login-personal-link">Cadastre-se</Link>
         </p>
+        <p className="login-personal-register-link">
+           <Link to="/resetar-senha" className="login-personal-link">Esqueci Senha</Link>
+        </p>
       </div>
     </div>
   );
