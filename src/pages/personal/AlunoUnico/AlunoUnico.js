@@ -44,8 +44,9 @@ export default function AlunoUnico() {
   };
 
   const handleTreinoClick = (treino) => {
-  
-    setTreinoSelecionado(treinoSelecionado?.id === treino.id ? null : treino);
+    if (treinoSelecionado?.id !== treino.id) {
+      setTreinoSelecionado(treino);
+    }
   };
 
   return (
@@ -64,7 +65,10 @@ export default function AlunoUnico() {
               <>
                 <h3>{dadosAluno.nome}</h3>
                 <div className="container-aluno-unico-links">
-                  <button onClick={togglePopup} className="BTN-link-redirecionamento">
+                  <button
+                    onClick={togglePopup}
+                    className="BTN-link-redirecionamento"
+                  >
                     Cadastrar Treino
                   </button>
 
@@ -76,7 +80,10 @@ export default function AlunoUnico() {
                     onSubmit={CadastroTreino}
                   />
 
-                  <button onClick={() => setAbrir(true)} className="BTN-link-redirecionamento">
+                  <button
+                    onClick={() => setAbrir(true)}
+                    className="BTN-link-redirecionamento"
+                  >
                     Consultar Treino
                   </button>
                 </div>
@@ -89,11 +96,14 @@ export default function AlunoUnico() {
                           treinoSelecionado?.id === treino.id ? "expandido" : ""
                         }`}
                         key={treino.id}
-                        onClick={() => handleTreinoClick(treino)} 
+                        onClick={() => handleTreinoClick(treino)}
                       >
                         {treinoSelecionado?.id === treino.id ? (
-                          <div>
-                            <ConsultaTreinoComExercicios treinoId={treino.id} /> 
+                          <div className="">
+                            <ConsultaTreinoComExercicios
+                              treinoId={treino.id}
+                              onClose={() => setTreinoSelecionado(null)}
+                            />
                           </div>
                         ) : (
                           <h1>{treino.nome_treino}</h1>
