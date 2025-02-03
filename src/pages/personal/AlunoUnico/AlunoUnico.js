@@ -15,7 +15,7 @@ export default function AlunoUnico() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [nome_treino, setNome_treino] = useState("");
   const [abrir, setAbrir] = useState(false);
-  const [treinoSelecionado, setTreinoSelecionado] = useState(null); // Track selected treino
+  const [treinoSelecionado, setTreinoSelecionado] = useState(null);
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -102,6 +102,7 @@ export default function AlunoUnico() {
                           <div className="">
                             <ConsultaTreinoComExercicios
                               treinoId={treino.id}
+                              treinoNome={treino.nome_treino}
                               onClose={() => setTreinoSelecionado(null)}
                             />
                           </div>

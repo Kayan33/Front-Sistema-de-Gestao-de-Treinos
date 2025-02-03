@@ -38,10 +38,11 @@
   }
   
   .container-aluno-unico-treino.expandido {
-    height: auto; /* Aumenta a altura quando expandido */
+    height: auto; 
     padding: 20px;
     background-color: #f0f0f0;
     border-color: #888;
+    transition: all 0.3s ease;
   }
   
   .detalhes-treino {
