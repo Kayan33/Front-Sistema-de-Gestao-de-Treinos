@@ -35,24 +35,6 @@ const PopupCadastrarExercicioDetalhado = ({
             <form className="cadastrar-aluno-form" onSubmit={handleSubmit}>
               <h2>Cadastrar Exercício Detalhado</h2>
 
-              <input
-                type="number"
-                className="form-input-number"
-                placeholder="Repetições"
-                value={repeticoes}
-                onChange={(e) => setRepeticoes(e.target.value)}
-                required
-              />
-
-              <input
-                type="number"
-                className="form-input-number"
-                placeholder="Descanso (segundos)"
-                value={descanso}
-                onChange={(e) => setDescanso(e.target.value)}
-                required
-              />
-
               <select
                 value={categoriaSelecionada}
                 onChange={(e) => setCategoriaSelecionada(e.target.value)}
@@ -88,6 +70,26 @@ const PopupCadastrarExercicioDetalhado = ({
                     </option>
                   ))}
               </select>
+
+              <input
+                type="number"
+                className="form-input-number"
+                placeholder="Repetições"
+                value={repeticoes}
+                onChange={(e) => setRepeticoes(e.target.value)}
+                required
+              />
+
+              <input
+                type="number"
+                className="form-input-number"
+                placeholder="Descanso (segundos)"
+                value={descanso}
+                onChange={(e) => setDescanso(e.target.value)}
+                required
+              />
+
+
 
               <button type="submit" className="form-button">
                 Cadastrar
