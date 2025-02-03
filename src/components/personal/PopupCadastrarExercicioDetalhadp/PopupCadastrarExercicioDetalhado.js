@@ -60,7 +60,11 @@ const PopupCadastrarExercicioDetalhado = ({
               >
                 <option value="">Selecione uma categoria</option>
                 {categoria.map((cat) => (
-                  <option key={cat.id} value={cat.id} className="form-select-option">
+                  <option
+                    key={cat.id}
+                    value={cat.id}
+                    className="form-select-option"
+                  >
                     {cat.categoria}
                   </option>
                 ))}
@@ -75,13 +79,19 @@ const PopupCadastrarExercicioDetalhado = ({
                 {categoria
                   .find((cat) => cat.id === categoriaSelecionada)
                   ?.exercicios.map((ex) => (
-                    <option key={ex.id} value={ex.id} className="form-select-option">
+                    <option
+                      key={ex.id}
+                      value={ex.id}
+                      className="form-select-option"
+                    >
                       {ex.nome_exercicio}
                     </option>
                   ))}
               </select>
 
-              <button type="submit" className="form-button">Cadastrar</button>
+              <button type="submit" className="form-button">
+                Cadastrar
+              </button>
             </form>
           </div>
         </div>
