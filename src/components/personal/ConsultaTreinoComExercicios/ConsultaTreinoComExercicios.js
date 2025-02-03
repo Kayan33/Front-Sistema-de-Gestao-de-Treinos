@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Await, useParams } from "react-router-dom";
 import "../../../style/classes.css";
 import "./ConsultaTreinoComExercicios.css";
 import { Personalapi } from "../../../api/personalApi";
@@ -12,12 +12,14 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [categoria, setCategoria] = useState([]);
+  const [exercicios, setExercicios] = useState([]);
 
   const { verificarToken, token } = useContext(AutenticadoContexto);
   verificarToken();
 
   const { aluno } = useParams();
   const ID = JSON.parse(localStorage.getItem("@id")) || null;
+
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -31,59 +33,137 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
     setCategoria(resposta.data);
   }
 
-  async function handleCadastrarExercicio({ repeticoes, descanso, exercicioID }) {
+  async function handleCadastrarExercicio({
+    repeticoes,
+    descanso,
+    exercicioID,
+  }) {
     try {
-      await ExercicioDetalhadoApi.cadastrar(repeticoes, descanso, exercicioID, treinoId);
+      await ExercicioDetalhadoApi.cadastrar(
+        repeticoes,
+        descanso,
+        exercicioID,
+        treinoId
+      );
       setIsPopupOpen(false);
       consultarDadosUsuarios();
     } catch (error) {}
   }
+
+  async function Troca(ID, repeticoes, descanso) {
+    console.log("Troca called", ID, repeticoes, descanso); 
+    await ExercicioDetalhadoApi.trocar(ID, repeticoes, descanso);
+  }
+  
+
+  const handleInputChange = (e, exercicioId, tipo) => {
+    const { value } = e.target;
+
+    
+    setExercicios((prevExercicios) =>
+      prevExercicios.map((exercicio) => {
+        if (exercicio.id === exercicioId) {
+          return {
+            ...exercicio,
+            [tipo]: value, 
+          };
+        }
+        return exercicio;
+      })
+    );
+  };
 
   useEffect(() => {
     consultarDadosUsuarios();
     consultaCategoria();
   }, []);
 
+  useEffect(() => {
+    if (dadosAluno.treino?.length > 0) {
+      const treinoAtual = dadosAluno.treino.find(
+        (treino) => treino.id === treinoId
+      );
+      if (treinoAtual) {
+        setExercicios(treinoAtual.AlunoExercicio || []);
+      }
+    }
+  }, [dadosAluno, treinoId]);
+
   return (
     <div className="consulta-treino-container">
       <div className="class-BTN">
+        <button className="BTN-link-redirecionamento" onClick={onClose}>
+          Voltar
+        </button>
 
-      <button className="BTN-link-redirecionamento" onClick={onClose}>
-        Voltar
-      </button>
-
-      <button className="btn-cadastro" onClick={togglePopup}>
-        + Adicionar Exercício
-      </button>
+        <button className="btn-cadastro" onClick={togglePopup}>
+          + Adicionar Exercício
+        </button>
       </div>
-      <h1 className="treinamento-titulo">{treinoNome}</h1> 
-
+      <h1 className="treinamento-titulo">{treinoNome}</h1>
 
       {dadosAluno.treino?.length > 0 ? (
-  <ul className="exercicios-lista">
-    {dadosAluno.treino
-      .filter((treino) => treino.id === treinoId)
-      .flatMap((treino) =>
-        treino.AlunoExercicio?.length > 0 ? (
-          treino.AlunoExercicio.map((exercicio) => (
-            <li key={exercicio.id} className="exercicio-item">
-              <span className="exercicio-nome">{exercicio.exercicio.nome_exercicio}</span>
-              <span className="exercicio-repeticoes">{exercicio.repeticoes} repetições</span>
-              <span className="exercicio-descanso">{exercicio.descanso}s descanso</span>
-              <span className="exercicio-categoria">
-                Categoria: {exercicio.exercicio.categoria.categoria}
-              </span>
-            </li>
-          ))
-        ) : (
-          <p className="nenhum-exercicio">Nenhum exercício cadastrado.</p>
-        )
-      )}
-  </ul>
-) : (
-  <p className="nenhum-exercicio">Nenhum exercício cadastrado.</p>
-)}
+        <ul className="exercicios-lista">
+          {exercicios.length > 0 ? (
+            exercicios.map((exercicio) => (
+              <li key={exercicio.id} className="exercicio-item">
+                <span className="exercicio-categoria">
+                  Categoria: {exercicio.exercicio.categoria.categoria}
+                </span>
+                <div className="exercicio-container">
+                  <div className="exercicio-video-container">
+                    <iframe
+                      src={exercicio.exercicio.URL_video}
+                      className="exercicio-video"
+                      title={exercicio.exercicio.nome_exercicio}
+                    ></iframe>
+                  </div>
 
+                  <form
+                    className="exercicio-detalhes"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      Troca(
+                        exercicio.id,
+                        exercicio.repeticoes,
+                        exercicio.descanso
+                      );
+                    }}
+                  >
+                    <span className="exercicio-nome">
+                      {exercicio.exercicio.nome_exercicio}
+                    </span>
+
+                    <input
+                      type="number"
+                      className="form-input-number"
+                      value={exercicio.repeticoes || 0}
+                      onChange={(e) =>
+                        handleInputChange(e, exercicio.id, "repeticoes")
+                      }
+                    />
+
+                    <input
+                      type="number"
+                      className="form-input-number"
+                      value={exercicio.descanso || 0}
+                      onChange={(e) =>
+                        handleInputChange(e, exercicio.id, "descanso")
+                      }
+                    />
+
+                    <button type="submit">Enviar</button>
+                  </form>
+                </div>
+              </li>
+            ))
+          ) : (
+            <p className="nenhum-exercicio">Nenhum exercício cadastrado.</p>
+          )}
+        </ul>
+      ) : (
+        <p className="nenhum-exercicio">Nenhum exercício cadastrado.</p>
+      )}
 
       {isPopupOpen && (
         <PopupCadastrarExercicioDetalhado
@@ -96,6 +176,5 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
     </div>
   );
 };
-
 
 export default ConsultaTreinoComExercicios;
