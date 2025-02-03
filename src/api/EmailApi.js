@@ -11,12 +11,7 @@ export const EmailAPI = {
       );
       return resposta;
     } catch (err) {
-      console.error("Erro ao consultar treino:", err);
-
-      toast.error(
-        err.response?.data?.error || "Erro desconhecido. Tente novamente."
-      );
-      throw err;
+      toast.error(err.response?.data?.error || "Erro ao enviar e-mail.");
     }
   },
 
@@ -28,12 +23,10 @@ export const EmailAPI = {
       toast.success("Troca de senha concluida");
       return resposta;
     } catch (err) {
-      console.error("Erro ao consultar treino:", err);
-
       toast.error(
         err.response?.data?.error || "Erro desconhecido. Tente novamente."
       );
-      throw err;
+      
     }
   },
 };
