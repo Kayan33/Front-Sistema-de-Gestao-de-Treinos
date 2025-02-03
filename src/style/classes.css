@@ -4,9 +4,6 @@
   }
   
   .container-aluno-unico-treino {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: var(--cor-cinza-clara);
     border: 1px solid var(--cor-cinza);
     border-radius: 0.5rem;
