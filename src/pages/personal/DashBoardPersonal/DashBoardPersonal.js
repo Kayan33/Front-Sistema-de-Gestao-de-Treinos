@@ -52,7 +52,7 @@ export default function DashBoardPersonal() {
             </div>
 
             <div className="dashboard-card">
-              <Link to="/CriaExercicios/:treino" className="dashboard-link">
+              <Link to="/Categoria" className="dashboard-link">
                 <h3 className="dashboard-title">Exercícios</h3>
                 <p className="dashboard-description">
                   Aqui você vê, cria e edita exercícios.
