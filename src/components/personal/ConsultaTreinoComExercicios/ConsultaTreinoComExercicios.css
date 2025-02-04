@@ -26,20 +26,7 @@
   margin-bottom: 1rem;
 }
 
-.btn-cadastro {
-  background: var(--cor-verde-claro);
-  color: var(--cor-branca);
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
-.btn-cadastro:hover {
-  background: var(--cor-verde);
-  transform: translateY(-3px);
-}
 
 .treinamento-titulo {
   font-size: var(--fonte-titulo);
@@ -48,8 +35,9 @@
   margin-bottom: 3rem;
 }
 
+/* Estilização da lista de exercícios */
 .exercicios-lista {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -57,42 +45,50 @@
 
 .exercicio-item {
   background: var(--cor-branca);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
-  
+  transition: all 0.3s ease-in-out;
 }
 
 .exercicio-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-
-
-
-
-.exercicio-container{
+/* Container principal do exercício */
+.exercicio-container {
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.exercicio-detalhes{
-display: flex;
-background-color: #f0f0f0;
-flex-direction: column;
-width: 47%;
+/* Detalhes do exercício */
+.exercicio-detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
+.exercicio-detalhes label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--cor-preta);
+  margin-top: 0.5rem;
+  display: block;
+}
+
 
 .exercicio-nome {
   font-size: var(--fonte-subtitulo);
+  font-weight: bold;
   color: var(--cor-preta);
 }
+
+
 
 .exercicio-repeticoes,
 .exercicio-descanso,
@@ -111,6 +107,7 @@ width: 47%;
   color: var(--cor-primaria);
 }
 
+/* Mensagem de nenhum exercício */
 .nenhum-exercicio {
   font-size: var(--fonte-destaque);
   color: var(--cor-vermelho-forte);
@@ -119,19 +116,71 @@ width: 47%;
   font-weight: bold;
 }
 
-
-iframe {
-  width: 100%;
+/* Estilização do vídeo */
+.exercicio-video-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  align-items: center;
 }
 
- iframe {
-  width: 100%; /* Faz o vídeo ocupar a largura disponível */
-  width: 520px; /* Limita o tamanho máximo */
-  height: 315px; /* Mantém a proporção 16:9 */
-  border-radius: 8px; /* Arredonda as bordas para combinar com o estilo */
-  border: none; /* Remove bordas padrão */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Mantém a estética do design */
+.exercicio-video {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs */
+.descanso-input-number {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.descanso-input-number label {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--cor-cinza-escura);
+  margin-left: 0.5rem;
+}
+
+
+.form-input-number-repeticoes,
+.form-input-number-descanso {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid var(--cor-cinza-escura); /* Cor mais forte */
+  background-color: var(--cor-branca);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--cor-preta);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Quando o usuário clica no input */
+.form-input-number-repeticoes:focus,
+.form-input-number-descanso:focus {
+  border-color: var(--cor-primaria); /* Cor de destaque ao focar */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .exercicio-item {
+    padding: 1rem;
+  }
+
+  .exercicio-video {
+    max-width: 100%;
+  }
+
+  .descanso-input-number {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

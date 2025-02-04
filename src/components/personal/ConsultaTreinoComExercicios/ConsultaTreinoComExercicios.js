@@ -20,7 +20,6 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   const { aluno } = useParams();
   const ID = JSON.parse(localStorage.getItem("@id")) || null;
 
-
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
   async function consultarDadosUsuarios() {
@@ -51,21 +50,18 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   }
 
   async function Troca(ID, repeticoes, descanso) {
-    console.log("Troca called", ID, repeticoes, descanso); 
     await ExercicioDetalhadoApi.trocar(ID, repeticoes, descanso);
   }
-  
 
   const handleInputChange = (e, exercicioId, tipo) => {
     const { value } = e.target;
 
-    
     setExercicios((prevExercicios) =>
       prevExercicios.map((exercicio) => {
         if (exercicio.id === exercicioId) {
           return {
             ...exercicio,
-            [tipo]: value, 
+            [tipo]: value,
           };
         }
         return exercicio;
@@ -96,7 +92,7 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
           Voltar
         </button>
 
-        <button className="btn-cadastro" onClick={togglePopup}>
+        <button className="BTN-adiciona" onClick={togglePopup}>
           + Adicionar Exercício
         </button>
       </div>
@@ -133,26 +129,31 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
                     <span className="exercicio-nome">
                       {exercicio.exercicio.nome_exercicio}
                     </span>
-
+                    <label>Repetição</label>
                     <input
                       type="number"
-                      className="form-input-number"
+                      className="form-input-number-repeticoes"
                       value={exercicio.repeticoes || 0}
                       onChange={(e) =>
                         handleInputChange(e, exercicio.id, "repeticoes")
                       }
                     />
-
+                    <label>Descanço</label>
+                    <div className="descanso-input-number">
                     <input
                       type="number"
-                      className="form-input-number"
+                      className="form-input-number-descanso"
                       value={exercicio.descanso || 0}
                       onChange={(e) =>
                         handleInputChange(e, exercicio.id, "descanso")
                       }
                     />
+                    <label>Segundos</label>
+                    </div>
 
-                    <button type="submit">Enviar</button>
+                    <button type="submit" className="BTN-adiciona">
+                      Enviar
+                    </button>
                   </form>
                 </div>
               </li>
