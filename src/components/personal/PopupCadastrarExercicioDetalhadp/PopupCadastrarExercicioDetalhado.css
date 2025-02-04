@@ -1,52 +1,46 @@
 @import url("../../../style/variables.css");
 @import url("../../../style/global.css");
 
-
-  /* Estilo para o input de número (repetições e descanso) */
 .form-input-number {
-    padding: 0.8rem;
-    margin-bottom: 1.5rem;
-    border: 2px solid var(--cor-cinza);
-    border-radius: 5px;
-    font-size: var(--fonte-texto);
-    background-color: var(--cor-cinza-clara);
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-input-number:focus {
-    outline: none;
-    border-color: var(--cor-primaria);
-    background-color: var(--cor-branca);
-  }
-  
-  /* Estilo para o select (categoria e exercício) */
-  .form-select {
-    padding: 0.8rem;
-    margin-bottom: 1.5rem;
-    border: 2px solid var(--cor-cinza);
-    border-radius: 5px;
-    font-size: var(--fonte-texto);
-    background-color: var(--cor-cinza-clara);
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-select:focus {
-    outline: none;
-    border-color: var(--cor-primaria);
-    background-color: var(--cor-branca);
-  }
-  
-  /* Estilo para as opções do select */
-  .form-select-option {
-    padding: 0.5rem;
-    background-color: var(--cor-branca);
-    color: var(--cor-preta);
-    border: 1px solid var(--cor-cinza);
-    transition: background-color 0.3s ease;
-  }
-  
-  .form-select-option:hover {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branca);
-  }
-  
+  padding: 0.8rem;
+  border: 2px solid var(--cor-cinza);
+  border-radius: 5px;
+  font-size: var(--fonte-texto);
+  background-color: var(--cor-cinza-clara);
+  transition: border-color 0.3s ease;
+}
+
+.form-input-number:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background-color: var(--cor-branca);
+}
+
+.form-select {
+  padding: 0.8rem;
+
+  border: 2px solid var(--cor-cinza);
+  border-radius: 5px;
+  font-size: var(--fonte-texto);
+  background-color: var(--cor-cinza-clara);
+  transition: border-color 0.3s ease;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background-color: var(--cor-branca);
+}
+
+.form-select-option {
+  padding: 0.5rem;
+  background-color: var(--cor-branca);
+  color: var(--cor-preta);
+  border: 1px solid var(--cor-cinza);
+  transition: background-color 0.3s ease;
+}
+
+.form-select-option:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+}
