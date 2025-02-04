@@ -40,6 +40,17 @@
   flex-direction: column;
   gap: 0.5rem;
   align-items: flex-start;
+  position: relative;
+}
+
+.visivel-login {
+  position: absolute;
+  right: 10px;
+  top: 67%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--cor-cinza-escura);
 }
 
 
