@@ -45,6 +45,7 @@ export default function AuthProvider({ children }) {
       localStorage.setItem("@id", JSON.stringify(resposta.data.id));
       localStorage.setItem("@token", JSON.stringify(resposta.data.token));
       localStorage.setItem("@nome", JSON.stringify(resposta.data.nome));
+      localStorage.setItem("@email", JSON.stringify(resposta.data.email));
       setTokenT(true);
       toast.success('Login realizado com sucesso')
     } catch (err) {
@@ -56,11 +57,11 @@ export default function AuthProvider({ children }) {
   function logout() {
     localStorage.removeItem("@token");
     localStorage.removeItem("@id")
-    localStorage.removeItem("nome")
+    localStorage.removeItem("@nome")
+    localStorage.removeItem("@email")
 
     setTokenT(false)
     setToken("")
-
     toast.success('Deslogado com sucesso')
   }
 

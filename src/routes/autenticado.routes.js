@@ -4,6 +4,7 @@ import ListaAlunos from "../pages/personal/ListaAlunos/ListaAlunos";
 import AlunoUnico from "../pages/personal/AlunoUnico/AlunoUnico";
 import TodosTreinos from "../components/personal/ConsultaTodosTreinos/ConsultaTodosTreinos";
 import Categoria from "../pages/personal/Categoria/Categoria";
+import Exercicio from "../pages/personal/Exercicio/Exercicio";
 
 
 export default function Autentificado() {
@@ -16,6 +17,7 @@ export default function Autentificado() {
         <Route path="/cliente/lista" element={<ListaAlunos/>}/>
         <Route path="/cliente/:aluno" element={<AlunoUnico/>}/>
         <Route path="Todos/treino" element={<TodosTreinos/>}/>
+        <Route path="/Exercicios/:categoria" element={<Exercicio/>}/>
       </Routes>
     </BrowserRouter>
   )

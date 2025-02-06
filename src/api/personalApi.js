@@ -35,28 +35,34 @@ export const Personalapi = {
 
   alteracao: async (aluno, ID) => {
     try {
-      await apiLocal.put(`/AlterarDadosPersonal/${ID}`, {
-        aluno: aluno ? [aluno] : [], // Envia o aluno como um array, se definido
+      const response = await apiLocal.put(`/AlterarDadosPersonal/${ID}`, {
+        aluno: aluno ? [aluno] : [],
       });
-      toast.success("Cadastro efetuado com sucesso");
+
+      toast.success(response.data.mensagem);
     } catch (err) {
-      console.error("Erro ao cadastrar aluno:", err);
-      toast.error(err.response.data.error);
-      throw err;
+      console.error("Erro ao cadastrar aluno", err);
+
+      toast.error(
+        err.response.data.erro ||
+          err.response.data.mensagem ||
+          "Erro ao cadastrar aluno"
+      );
     }
   },
 
-  consultaUnica: async (ID,token) => {
+  consultaUnica: async (ID, token) => {
     try {
-     const resposta = await apiLocal.post(`/ConsultarPersonalUnico/${ID}`, {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-     );
-     return resposta
-      
+      const resposta = await apiLocal.post(
+        `/ConsultarPersonalUnico/${ID}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return resposta;
     } catch (error) {
       console.error("Erro ao buscar personal:", error);
       toast.error("Erro ao buscar personal.");
@@ -64,19 +70,22 @@ export const Personalapi = {
     }
   },
 
-  consultaPcomA: async(ID,aluno,token) =>{
+  consultaPcomA: async (ID, aluno, token) => {
     try {
-      const resposta = await apiLocal.post(`/consultarPersonalComAlunoUnico/${ID}/${aluno}/`,{},
-      {
-        headers:{
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      return resposta
+      const resposta = await apiLocal.post(
+        `/consultarPersonalComAlunoUnico/${ID}/${aluno}/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return resposta;
     } catch (err) {
       console.error("Erro ao cadastrar aluno:", err);
       toast.error(err.response.data.error);
       throw err;
     }
-  }
+  },
 };

@@ -44,7 +44,7 @@ export default function Categoria() {
               <Link
                 key={cat.id}
                 className="Link-categoria"
-                to={`/exercicio/${cat.id}`}
+                to={`/Exercicios/${cat.id}`}
               >
                 <h3 className="Link-categoria-h3">{cat.categoria}</h3>
               </Link>
