@@ -17,7 +17,7 @@ export default function Autentificado() {
         <Route path="/cliente/lista" element={<ListaAlunos/>}/>
         <Route path="/cliente/:aluno" element={<AlunoUnico/>}/>
         <Route path="Todos/treino" element={<TodosTreinos/>}/>
-        <Route path="/Exercicios/:categoria" element={<Exercicio/>}/>
+        <Route path="/Exercicios/:categoriaID" element={<Exercicio/>}/>
       </Routes>
     </BrowserRouter>
   )
