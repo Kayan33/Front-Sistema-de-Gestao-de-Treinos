@@ -32,4 +32,16 @@ export const ExercicioDetalhadoApi = {
       );
     }
   },
+
+  Deletar : async(id)=> {
+    try {
+      const resposta = await apiLocal.delete(`DeletarExercicioDelatalhado/${id}`)
+     toast.success(`Treino Excluido com sucesso`)
+      return resposta
+    } catch (err) {
+      toast.error(
+        err.response?.data?.error || "Erro desconhecido. Tente novamente."
+      );
+    }
+  }
 };
