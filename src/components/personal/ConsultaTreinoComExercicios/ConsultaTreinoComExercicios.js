@@ -69,6 +69,11 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
     );
   };
 
+  async function DeleteExercicio(id) {
+    
+    
+  }
+
   useEffect(() => {
     consultarDadosUsuarios();
     consultaCategoria();
@@ -153,6 +158,12 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
 
                     <button type="submit" className="BTN-adiciona">
                       Enviar
+                    </button>
+
+                    <button type="submit"
+                     className="BTN-remove"
+                     onClick={()=> DeleteExercicio(exercicio.id)}>
+                      deletar
                     </button>
                   </form>
                 </div>

@@ -67,7 +67,7 @@ export default function AlunoUnico() {
                 <div className="container-aluno-unico-links">
                   <button
                     onClick={togglePopup}
-                    className="BTN-link-redirecionamento"
+                    className="BTN-adiciona"
                   >
                     Cadastrar Treino
                   </button>
@@ -90,6 +90,7 @@ export default function AlunoUnico() {
 
                 <div className="container-aluno-unico-lista-treino">
                   {dadosAluno.treino?.length > 0 ? (
+                    
                     dadosAluno.treino.map((treino) => (
                       <div
                         className={`container-aluno-unico-treino ${
@@ -105,10 +106,13 @@ export default function AlunoUnico() {
                               treinoNome={treino.nome_treino}
                               onClose={() => setTreinoSelecionado(null)}
                             />
+                            
                           </div>
                         ) : (
                           <h1>{treino.nome_treino}</h1>
+                          
                         )}
+                        
                       </div>
                     ))
                   ) : (
