@@ -54,7 +54,7 @@ export default function CadastroPersonal() {
         senha,
         aluno,
       });
-      navigate("/");
+      navigate("/login/personal");
     } catch (error) {
       toast.error("Erro ao cadastrar. Tente novamente.");
     }

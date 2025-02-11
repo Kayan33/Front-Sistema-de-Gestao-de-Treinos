@@ -18,10 +18,10 @@ export default function LoginPersonal() {
     e.preventDefault();
 
     try {
-      const loginSucesso = await loginEntrada(email, senha);
-      if (loginSucesso) {
+       await loginEntrada(email, senha);
+     
         navigate("/DashBoardPersonal");
-      }
+      
     } catch (err) {
       toast.error("Erro ao fazer login. Tente novamente!");
     }

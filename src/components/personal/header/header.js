@@ -15,7 +15,7 @@ const{logout} = useContext(AutenticadoContexto)
           <Link to="/ajuda" className='navigation-personal-link'>Ajuda</Link>
           <Link to="/perfil" className='navigation-personal-link'>Perfil</Link>
 
-        <Link className='logout' onClick={logout}>logout</Link>
+        <Link className='logout' onClick={logout} >logout</Link>
         </div>
       </header>
 

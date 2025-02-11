@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import apiLocal from "./apilocal/apiLocal";
-import { data } from "react-router-dom";
 
 export const treinoAPI = {
     Cadastro: async ( nome_treino,aluno,ID, ) => {
@@ -20,7 +19,7 @@ export const treinoAPI = {
         } catch (err) {
           console.error("Erro ao cadastrar aluno:", err);
           toast.error(err.response?.data?.error || "Erro ao cadastrar treino. Tente novamente.");
-          toast.error(data.dados)
+          
           throw err;
         }
       },
