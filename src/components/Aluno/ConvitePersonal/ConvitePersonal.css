@@ -1,0 +1,51 @@
+@import url("../../../style/variablesAluno.css");
+
+.convite-container {
+    background: var(--cor-cinza-clara-aluno);
+    padding: var(--padding-padrao-aluno);
+    border-radius: var(--borda-arredondada-aluno);
+    box-shadow: var(--sombra-suave-aluno);
+    text-align: center;
+}
+
+.convite-titulo {
+    font-size: var(--fonte-titulo-aluno);
+    color: var(--cor-primaria-aluno);
+}
+
+.convite-mensagem {
+    font-size: var(--fonte-texto-aluno);
+    color: var(--cor-preta-aluno);
+}
+
+.convite-botoes {
+    margin-top: var(--margem-padrao-aluno);
+}
+
+.botao {
+    padding: 0.8rem 1.5rem;
+    font-size: var(--fonte-texto-aluno);
+    border: none;
+    border-radius: var(--borda-arredondada-aluno);
+    cursor: pointer;
+    transition: var(--transicao-rapida-aluno);
+}
+
+.aceitar {
+    background: var(--cor-verde-aluno);
+    color: var(--cor-branca-aluno);
+}
+
+.aceitar:hover {
+    background: var(--cor-primaria-escura-aluno);
+}
+
+.recusar {
+    background: var(--cor-vermelho-aluno);
+    color: var(--cor-branca-aluno);
+    margin-left: var(--margem-padrao-aluno);
+}
+
+.recusar:hover {
+    background: var(--cor-cinza-escura-aluno);
+}
