@@ -1,0 +1,122 @@
+/* DashboardAluno.css */
+
+.dashboard-container {
+    padding: var(--padding-padrao-aluno);
+    background-color: var(--cor-branca-aluno);
+    min-height: 100vh;
+  }
+  
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: var(--margem-padrao-aluno);
+  }
+  
+  .dashboard-title-aluno {
+    font-size: var(--fonte-titulo-aluno);
+    color: var(--cor-primaria-aluno);
+  }
+  
+  .dashboard-subtitle {
+    font-size: var(--fonte-subtitulo-aluno);
+    color: var(--cor-cinza-clara-aluno);
+  }
+  
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .section-title {
+    font-size: var(--fonte-subtitulo-aluno);
+    margin-bottom: 1rem;
+  }
+  
+  .next-workout,
+  .shortcuts,
+  .statistics {
+    background-color: var(--cor-cinza-clara-aluno);
+    border-radius: var(--borda-arredondada-aluno);
+    padding: var(--padding-padrao-aluno);
+    box-shadow: var(--sombra-suave-aluno);
+  }
+  
+  .workout-info {
+    font-size: var(--fonte-texto-aluno);
+    color: var(--cor-preta-aluno);
+  }
+  
+  .highlight-text {
+    font-weight: bold;
+    color: var(--cor-primaria-aluno);
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: var(--fonte-texto-aluno);
+    border-radius: var(--borda-arredondada-aluno);
+    cursor: pointer;
+    transition: var(--transicao-rapida-aluno);
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--cor-primaria-aluno);
+    color: var(--cor-branca-aluno);
+    border: none;
+  }
+  
+  .btn-secondary {
+    background-color: var(--cor-secundaria-aluno);
+    color: var(--cor-branca-aluno);
+    border: none;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Estilos para a Barra de Progresso */
+  .progress-bar-container {
+    background-color: var(--cor-cinza-medio-aluno);
+    height: 12px;
+    border-radius: var(--borda-arredondada-aluno);
+  }
+  
+  .progress-bar {
+    background-color: var(--cor-verde-aluno);
+    height: 100%;
+    border-radius: var(--borda-arredondada-aluno);
+  }
+  
+  .progress-text {
+    font-size: var(--fonte-menor-aluno);
+    color: var(--cor-cinza-escura-aluno);
+    margin-top: 0.5rem;
+  }
+  
+  /* Seção de Chat com Personal */
+  .shortcut-buttons {
+    display: flex;
+    gap: var(--margem-padrao-aluno);
+    flex-wrap: wrap;
+  }
+  
+  .shortcut-buttons .btn {
+    flex: 1 1 48%;
+    min-width: 120px;
+  }
+  
+  .shortcut-buttons .btn-secondary {
+    background-color: var(--cor-cinza-clara-aluno);
+    color: var(--cor-preta-aluno);
+    box-shadow: var(--sombra-suave-aluno);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .shortcut-buttons .btn-secondary:hover {
+    background-color: var(--cor-secundaria-aluno);
+    color: var(--cor-branca-aluno);
+  }
+  
