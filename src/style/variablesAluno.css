@@ -1,0 +1,37 @@
+:root {
+    /* 🎨 Cores Principais para Alunos */
+    --cor-primaria-aluno: #007bff;
+  --cor-primaria-escura-aluno: #0056b3;
+    --cor-secundaria-aluno: #ff9800; /* Laranja para destaques e CTA's */
+    --cor-branca-aluno: #ffffff;
+    --cor-preta-aluno: #1e1e1e;
+    --cor-cinza-clara-aluno: #f4f4f4;
+    --cor-cinza-medio-aluno: #c4c4c4;
+    --cor-cinza-escura-aluno: #666666;
+    --cor-verde-aluno: #28a745; /* Para feedbacks positivos */
+    --cor-vermelho-aluno: #dc3545; /* Para alertas e erros */
+  
+    /* 🎨 Gradientes */
+    --gradiente-primario-aluno: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
+    --gradiente-secundario-aluno: linear-gradient(135deg, var(--cor-secundaria), #ffcc80);
+  
+    /* 🔠 Fontes e Tamanhos */
+    --fonte-titulo-aluno: 2rem; /* Para títulos principais */
+    --fonte-subtitulo-aluno: 1.6rem; /* Para subtítulos e destaques */
+    --fonte-texto-aluno: 1.1rem; /* Para textos normais */
+    --fonte-menor-aluno: 0.9rem; /* Para pequenos textos auxiliares */
+  
+    /* 📏 Layout e Espaçamentos */
+    --padding-padrao-aluno: 1.5rem; /* Padding padrão para containers */
+    --margem-padrao-aluno: 1rem; /* Margem padrão */
+    --borda-arredondada-aluno: 12px; /* Bordas arredondadas para UX agradável */
+  
+    /* 💡 Sombras e Efeitos */
+    --sombra-suave-aluno: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --sombra-forte-aluno: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  
+    /* 🕶️ Opacidade e Transições */
+    --transicao-rapida-aluno: all 0.3s ease-in-out;
+    --transicao-media-aluno: all 0.5s ease-in-out;
+  }
+  
