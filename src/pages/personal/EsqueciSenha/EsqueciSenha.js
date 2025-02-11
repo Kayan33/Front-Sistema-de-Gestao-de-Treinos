@@ -11,14 +11,8 @@ export default function EsqueciSenha() {
   async function TrocaSenha(e) {
     e.preventDefault();
     
-    try {
       await EmailAPI.EnvioEmail(email)
-      
-      navigate("/")
-    } catch (error) {
-    
-  }
-
+ 
   }
 
   return (
@@ -41,9 +35,7 @@ export default function EsqueciSenha() {
           
           <button type="submit" className="login-personal-btn">Enviar</button>
         </form>
-        <p className="login-personal-register-link">
-           <Link to="/" className="login-personal-link">Login</Link>
-        </p>
+        
       </div>
     </div>
   );

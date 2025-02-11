@@ -140,7 +140,7 @@ export default function CadastroPersonal() {
         </form>
         <p className="login-personal-register-link">
           Já tem uma conta?{" "}
-          <Link to="/" className="login-personal-link">
+          <Link to="/login/personal" className="login-personal-link">
             Login
           </Link>
         </p>

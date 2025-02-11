@@ -16,7 +16,7 @@ export const CategoriaApi = {
 
   consultaUnica: async (categoriaID) => {
     try {
-      const resposta = await apiLocal.post(`ConsultarCategoriaUnico/${categoriaID}`)
+      const resposta = await apiLocal.post(`/ConsultarCategoriaUnico/${categoriaID}`)
 
       return resposta
     } catch (err) {
