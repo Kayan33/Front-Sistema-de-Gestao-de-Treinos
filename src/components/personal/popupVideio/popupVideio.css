@@ -1,0 +1,10 @@
+.popup-content-video{
+    background-color: var(--cor-branca);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 580px;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
