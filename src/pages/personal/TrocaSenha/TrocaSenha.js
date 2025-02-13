@@ -24,7 +24,7 @@ const navigate = useNavigate()
           return;
         }
 
-        if (senha && Confirmarsenha) {
+        if (senha !== Confirmarsenha) {
           toast.error(
             "senhas diferentes"
           );
