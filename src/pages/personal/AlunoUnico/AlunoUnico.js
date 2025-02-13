@@ -36,18 +36,25 @@ export default function AlunoUnico() {
     consultarDadosUsuarios();
   }, []);
 
-  const CadastroTreino = async (e) => {
+  async function CadastroTreino  (e)  {
     e.preventDefault();
     await treinoAPI.Cadastro(nome_treino, aluno, ID, token);
     setNome_treino("");
     await consultarDadosUsuarios();
   };
 
+  async function DeleteTreino(id){
+    await treinoAPI.delete(id)
+    await consultarDadosUsuarios();
+  }
+
   const handleTreinoClick = (treino) => {
     if (treinoSelecionado?.id !== treino.id) {
       setTreinoSelecionado(treino);
     }
   };
+
+
 
   return (
     <>
@@ -109,8 +116,10 @@ export default function AlunoUnico() {
                             
                           </div>
                         ) : (
+                        <div className="container-treino-nome">
                           <h1>{treino.nome_treino}</h1>
-                          
+                          <button className="BTN-remove" onClick={()=> DeleteTreino(treino.id)}>Delete</button>
+                          </div>
                         )}
                         
                       </div>
