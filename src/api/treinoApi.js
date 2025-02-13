@@ -54,8 +54,8 @@ export const treinoAPI = {
   delete: async (id) => {
     try {
       const resposta = await apiLocal.delete(`/ApagarTreino/${id}`);
-      return resposta;
       toast.success(`Deletado com Sucesso`);
+      return resposta;
     } catch (err) {
       console.error("Erro ao consultar treino:", err);
       toast.error(
