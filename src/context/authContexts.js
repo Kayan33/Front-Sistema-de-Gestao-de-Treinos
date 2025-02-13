@@ -54,6 +54,7 @@ export default function AuthProvider({ children }) {
       setToken(resposta.data.token);
       setAutenticado(true);
       toast.success("Login realizado com sucesso");
+      window.location.href = "/DashBoardPersonal";
     } catch (err) {
       toast.error(err.response?.data?.error || "Erro ao fazer login");
     }
@@ -67,6 +68,7 @@ export default function AuthProvider({ children }) {
 
     setToken("");
     setAutenticado(false);
+    window.location.href = "/";
     toast.success("Deslogado com sucesso");
   }
 
