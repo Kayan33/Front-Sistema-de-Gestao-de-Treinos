@@ -1,6 +1,8 @@
 import React, {  useState } from 'react';
 import { Link, useNavigate, useParams, } from 'react-router-dom';
 import { EmailAPI } from '../../../api/EmailApi';
+import { validarSenhaForte } from '../../../services/utils/validacoes';
+import { toast } from 'react-toastify';
 
 
 
@@ -14,6 +16,20 @@ const navigate = useNavigate()
 
   async function dadosLogin(e) {
     e.preventDefault();
+
+    if (!validarSenhaForte(senha)) {
+          toast.error(
+            "A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, um número e um caractere especial."
+          );
+          return;
+        }
+
+        if (senha && Confirmarsenha) {
+          toast.error(
+            "senhas diferentes"
+          );
+          return;
+        }
     await EmailAPI.TrocaSenha(senha,token)
   
     navigate("/")

@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import DashBoardPersonal from "../pages/personal/DashBoardPersonal/DashBoardPersonal";
 import ListaAlunos from "../pages/personal/ListaAlunos/ListaAlunos";
 import AlunoUnico from "../pages/personal/AlunoUnico/AlunoUnico";
@@ -8,7 +8,7 @@ import Exercicio from "../pages/personal/Exercicio/Exercicio";
 
 export default function Autentificado() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<DashBoardPersonal />} />
         <Route path="/DashBoardPersonal" element={<DashBoardPersonal />} />
@@ -18,7 +18,7 @@ export default function Autentificado() {
         <Route path="/Todos/treino" element={<TodosTreinos />} />
         <Route path="/Exercicios/:categoriaID" element={<Exercicio />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

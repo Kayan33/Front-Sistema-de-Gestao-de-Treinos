@@ -16,15 +16,7 @@ export default function LoginPersonal() {
 
   async function dadosLogin(e) {
     e.preventDefault();
-
-    try {
        await loginEntrada(email, senha);
-     
-        navigate("/DashBoardPersonal");
-      
-    } catch (err) {
-      toast.error("Erro ao fazer login. Tente novamente!");
-    }
   }
 
   return (

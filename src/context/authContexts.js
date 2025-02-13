@@ -28,7 +28,7 @@ export default function AuthProvider({ children }) {
     try {
       const resposta = await apiLocal.get(`/verificaToken/${ID}`, {
         headers: {
-          Authorization: `Bearer ${tokenU}`, // Corrigido para usar token atualizado
+          Authorization: `Bearer ${tokenU}`, 
         },
       });
 

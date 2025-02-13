@@ -7,6 +7,7 @@ import LoginAluno from "../pages/Aluno/Login/Login";
 import CadastroAluno from "../pages/Aluno/CadastroAluno/CadastroAluno";
 import ConvitePersonal from "../components/Aluno/ConvitePersonal/ConvitePersonal";
 import DashboardAluno from "../pages/Aluno/DashboardAluno/DashboardAluno";
+import PaginaPrincipal from "../pages/header/PaginaPrincipal";
 
 export default function Nautentificado() {
 
@@ -24,8 +25,9 @@ export default function Nautentificado() {
         <Route path="/cadastro/aluno" element={<CadastroAluno/>}/>
 
         <Route path="/convite" element={<ConvitePersonal/>}/>
-        <Route path="/convite" element={<ConvitePersonal/>}/>
         <Route path="/dashboard/aluno" element={<DashboardAluno/>}/>
+
+        <Route path="/" element={<PaginaPrincipal/>}/>
       </Routes>
     </BrowserRouter>
   )
