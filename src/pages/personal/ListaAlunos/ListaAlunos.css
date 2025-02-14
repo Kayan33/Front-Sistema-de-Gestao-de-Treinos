@@ -73,4 +73,10 @@
     font-size: var(--fonte-destaque);
     color: var(--cor-primaria);
   }
+
+  @media (max-width: 768px) {
+    .container-lista-aluno {
+      padding: 2rem; 
+    }
+  }
   
