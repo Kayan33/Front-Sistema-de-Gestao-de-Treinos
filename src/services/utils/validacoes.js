@@ -1,6 +1,7 @@
 // Função de validação do CREF
 export const validarCREF = (cref) => {
-  const regex = /^[0-9]{5}-[0-9]{1}\/[A-Z]{2}$/;
+  const regex = /^[0-9]{5,}-[0-9A-Za-z]{1}\/[A-Z]{2}$/;
+
   return regex.test(cref);
 };
 
@@ -25,6 +26,6 @@ export const formatarTelefone = (valor) => {
 
 // Função de validação de senha forte
 export const validarSenhaForte = (senha) => {
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
   return regex.test(senha);
 };

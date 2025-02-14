@@ -4,19 +4,18 @@
   }
   
   .container-aluno-unico-treino {
-    background: var(--cor-cinza-clara);
+    background: var(--cor-branca);
     border: 1px solid var(--cor-cinza);
     border-radius: 0.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background 0.3s, box-shadow 0.3s;
   }
-  
-  .container-aluno-unico-treino h1 {
-    font-size: var(--fonte-subtitulo);
-    color: var(--cor-preta);
-    
+
+  .container-aluno-unico-treino:hover {
+    background: var(--cor-cinza-clara);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
 
 /* Botão */
@@ -63,5 +62,16 @@
     font-weight: bold;
     text-align: center;
     cursor: pointer;
+  }
+
+  .msg-nenhum-exercicio{
+    font-size: var(--fonte-texto);
+    color: var(--cor-cinza-escura);
+    text-align: center;
+    padding: 1rem;
+    background: var(--cor-vermelho-forte);
+    color: var(--cor-branca);
+    border-radius: 6px;
+    font-weight: bold;
   }
 

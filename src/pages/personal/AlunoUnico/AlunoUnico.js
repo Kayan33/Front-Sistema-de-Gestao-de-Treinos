@@ -9,6 +9,7 @@ import PopupCadastrarTreino from "../../../components/personal/popupCadastrarTre
 import { treinoAPI } from "../../../api/treinoApi";
 import ConsultaTodosTreinos from "../../../components/personal/ConsultaTodosTreinos/ConsultaTodosTreinos";
 import ConsultaTreinoComExercicios from "../../../components/personal/ConsultaTreinoComExercicios/ConsultaTreinoComExercicios";
+import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function AlunoUnico() {
   const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
@@ -36,15 +37,15 @@ export default function AlunoUnico() {
     consultarDadosUsuarios();
   }, []);
 
-  async function CadastroTreino  (e)  {
+  async function CadastroTreino(e) {
     e.preventDefault();
     await treinoAPI.Cadastro(nome_treino, aluno, ID, token);
     setNome_treino("");
     await consultarDadosUsuarios();
-  };
+  }
 
-  async function DeleteTreino(id){
-    await treinoAPI.delete(id)
+  async function DeleteTreino(id) {
+    await treinoAPI.delete(id);
     await consultarDadosUsuarios();
   }
 
@@ -53,8 +54,6 @@ export default function AlunoUnico() {
       setTreinoSelecionado(treino);
     }
   };
-
-
 
   return (
     <>
@@ -72,10 +71,7 @@ export default function AlunoUnico() {
               <>
                 <h3>{dadosAluno.nome}</h3>
                 <div className="container-aluno-unico-links">
-                  <button
-                    onClick={togglePopup}
-                    className="BTN-adiciona"
-                  >
+                  <button onClick={togglePopup} className="BTN-adiciona">
                     Cadastrar Treino
                   </button>
 
@@ -97,14 +93,10 @@ export default function AlunoUnico() {
 
                 <div className="container-aluno-unico-lista-treino">
                   {dadosAluno.treino?.length > 0 ? (
-                    
                     dadosAluno.treino.map((treino) => (
                       <div
-                        className={`container-aluno-unico-treino ${
-                          treinoSelecionado?.id === treino.id ? "expandido" : ""
-                        }`}
+                        className={`container-aluno-unico-treino`}
                         key={treino.id}
-                        onClick={() => handleTreinoClick(treino)}
                       >
                         {treinoSelecionado?.id === treino.id ? (
                           <div className="">
@@ -113,19 +105,45 @@ export default function AlunoUnico() {
                               treinoNome={treino.nome_treino}
                               onClose={() => setTreinoSelecionado(null)}
                             />
-                            
                           </div>
                         ) : (
-                        <div className="container-treino-nome">
-                          <h1>{treino.nome_treino}</h1>
-                          <button className="BTN-remove" onClick={()=> DeleteTreino(treino.id)}>Delete</button>
+                          <div className="container-treino-nome">
+                            <h1>{treino.nome_treino}</h1>
+                            <div className="classes-treino-nome-button">
+
+                            <button
+                              className="BTN-remove"
+                              onClick={() => DeleteTreino(treino.id)}
+                            >
+                              Delete
+                            </button>
+
+                            <a
+                              className="BTN-expandir"
+                              onClick={() => handleTreinoClick(treino)}
+                            >
+                              <BsArrowDownCircleFill
+                                style={{
+                                  fontSize: "2rem",
+                                  color:
+                                    treinoSelecionado?.id === treino.id
+                                      ? "#FFD700"
+                                      : "#001f5c",
+                                  transform:
+                                    treinoSelecionado?.id === treino.id
+                                      ? "rotate(180deg)"
+                                      : "rotate(0deg)",
+                                  transition: "transform 0.3s ease",
+                                }}
+                              />
+                            </a>
+                            </div>
                           </div>
                         )}
-                        
                       </div>
                     ))
                   ) : (
-                    <p>Nenhum treino cadastrado.</p>
+                    <p className="msg-nenhum-exercicio">Nenhum treino cadastrado.</p>
                   )}
                 </div>
               </>

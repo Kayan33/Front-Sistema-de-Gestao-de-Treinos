@@ -10,6 +10,7 @@ export default function TrocaSenha() {
   
   const [senha, setSenha] = useState('');
   const [Confirmarsenha, setConfirmarsenha] = useState('');
+   const [visivelS, setvisivelS] = useState(false);
 
   const { token } = useParams();
 const navigate = useNavigate()
@@ -44,25 +45,29 @@ const navigate = useNavigate()
           <div className="login-personal-input-group">
             <label htmlFor="senha" className="login-cadastro-personal-label">Nova senha</label>
             <input
-              type="password"
+              type={visivelS ? "text" : "password"}
               id="senha"
               className="login-cadastro-personal-input-select"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
             />
+           
           </div>
 
           <div className="login-personal-input-group">
             <label htmlFor="senha" className="login-cadastro-personal-label">Confirmar senha</label>
             <input
-              type="password"
+              type={visivelS ? "text" : "password"}
               id="senha"
               className="login-cadastro-personal-input-select"
               value={Confirmarsenha}
               onChange={(e) => setConfirmarsenha(e.target.value)}
               required
             />
+            <div className="visivel-login" onClick={() => setvisivelS(!visivelS)}>
+              👁
+            </div>
           </div>
           <button type="submit" className="login-personal-btn">Entrar</button>
         </form>

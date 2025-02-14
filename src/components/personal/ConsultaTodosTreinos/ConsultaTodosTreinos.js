@@ -46,12 +46,14 @@ const ConsultaTodosTreinos = ({ setAbrir }) => {
         {dadosTreino.length > 0 ? (
           dadosTreino.map((treino) => (
             <div className="container-aluno-unico-treino" key={treino.id}>
+              <div className="container-treino-nome">
               <h1>{treino.nome_treino}</h1>
               <button className="BTN-adiciona">+</button>
+              </div>
             </div>
           ))
         ) : (
-          <p>Nenhum treino encontrado.</p>
+          <p className="msg-nenhum-exercicio">Nenhum treino encontrado.</p>
         )}
       </div>
     </>

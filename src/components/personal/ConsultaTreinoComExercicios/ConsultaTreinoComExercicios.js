@@ -4,9 +4,10 @@ import "./ConsultaTreinoComExercicios.css";
 import { Personalapi } from "../../../api/personalApi";
 import { useContext, useEffect, useState } from "react";
 import { AutenticadoContexto } from "../../../context/authContexts";
-import PopupCadastrarExercicioDetalhado from "../PopupCadastrarExercicioDetalhadp/PopupCadastrarExercicioDetalhado";
+import PopupCadastrarExercicioDetalhado from "../PopupCadastrarExercicioDetalhado/PopupCadastrarExercicioDetalhado";
 import { CategoriaApi } from "../../../api/CategoriaApi";
 import { ExercicioDetalhadoApi } from "../../../api/ExercicioDetalhadoApi";
+import { BsArrowUpCircleFill } from "react-icons/bs";
 
 const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
@@ -93,13 +94,19 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   return (
     <div className="consulta-treino-container">
       <div className="class-BTN">
-        <button className="BTN-link-redirecionamento" onClick={onClose}>
-          Voltar
-        </button>
+            <button className="BTN-adiciona" onClick={togglePopup}>
+              + Adicionar Exercício
+            </button>
 
-        <button className="BTN-adiciona" onClick={togglePopup}>
-          + Adicionar Exercício
-        </button>
+        <a className="BTN-expandir" onClick={onClose}>
+          <BsArrowUpCircleFill
+          style={{
+            fontSize: "2rem",
+            color: "#001f5c",
+          }}
+          /> 
+        </a>
+
       </div>
       <h1 className="treinamento-titulo">{treinoNome}</h1>
 
@@ -114,7 +121,7 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
                 <div className="exercicio-container">
                   <div className="exercicio-video-container">
                     <iframe
-                      src={exercicio.exercicio.URL_video}
+                      src={`https://www.youtube.com/embed/${exercicio.exercicio.URL_video}`}
                       className="exercicio-video"
                       title={exercicio.exercicio.nome_exercicio}
                     ></iframe>

@@ -50,7 +50,7 @@ export default function Categoria() {
               </Link>
             ))
           ) : (
-            <p>Sem categoria cadastrada.</p>
+            <p className="msg-nenhum-exercicio">Sem categoria cadastrada.</p>
           )}
         </div>
       </div>

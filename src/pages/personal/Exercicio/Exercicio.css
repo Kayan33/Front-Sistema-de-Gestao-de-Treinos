@@ -58,14 +58,5 @@
   }
   
   
-  .msg-nenhum-exercicio {
-    font-size: var(--fonte-texto);
-    color: var(--cor-cinza-escura);
-    text-align: center;
-    padding: 1rem;
-    background: var(--cor-vermelho-forte);
-    color: var(--cor-branca);
-    border-radius: 6px;
-    font-weight: bold;
-  }
+
   

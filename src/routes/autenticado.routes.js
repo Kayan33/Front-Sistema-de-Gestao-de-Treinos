@@ -1,14 +1,29 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import DashBoardPersonal from "../pages/personal/DashBoardPersonal/DashBoardPersonal";
 import ListaAlunos from "../pages/personal/ListaAlunos/ListaAlunos";
 import AlunoUnico from "../pages/personal/AlunoUnico/AlunoUnico";
 import TodosTreinos from "../components/personal/ConsultaTodosTreinos/ConsultaTodosTreinos";
 import Categoria from "../pages/personal/Categoria/Categoria";
 import Exercicio from "../pages/personal/Exercicio/Exercicio";
+import Loading from "../components/Loading/Loading";
 
-export default function Autentificado() {
+function RotasComLoading() {
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Simula um tempo de carregamento
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname]); // Ativa o Loading ao trocar de rota
+
   return (
-    <BrowserRouter>
+    <>
+      {loading && <Loading loading={loading} />}
       <Routes>
         <Route path="/" element={<DashBoardPersonal />} />
         <Route path="/DashBoardPersonal" element={<DashBoardPersonal />} />
@@ -18,7 +33,14 @@ export default function Autentificado() {
         <Route path="/Todos/treino" element={<TodosTreinos />} />
         <Route path="/Exercicios/:categoriaID" element={<Exercicio />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
+export default function Autentificado() {
+  return (
+    <BrowserRouter>
+      <RotasComLoading />
+    </BrowserRouter>
+  );
+}

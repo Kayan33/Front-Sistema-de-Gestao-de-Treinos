@@ -63,7 +63,7 @@ export default function ListaAlunos() {
               ))}
             </ul>
           ) : (
-            <p>Sem alunos cadastrados.</p>
+            <p className="msg-nenhum-exercicio">Sem alunos cadastrados.</p>
           )}
         </div>
       </div>

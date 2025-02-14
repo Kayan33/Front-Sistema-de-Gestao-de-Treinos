@@ -33,7 +33,6 @@
   .container-aluno-unico-treino {
     transition: all 0.3s ease;
     padding: 10px;
-    cursor: pointer;
     border: 1px solid #ccc;
   }
   
@@ -48,6 +47,16 @@
   .container-treino-nome{
     display: flex;
     justify-content: space-between;
+  }
+
+  .classes-treino-nome-button{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .BTN-expandir{
+    cursor: pointer;
   }
   
   .detalhes-treino {
