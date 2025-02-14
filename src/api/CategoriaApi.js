@@ -14,7 +14,7 @@ export const CategoriaApi = {
     }
   },
 
-  consultaUnica: async (categoriaID) => {
+  consultaUnica: async (categoriaID,) => {
     try {
       const resposta = await apiLocal.post(`/ConsultarCategoriaUnico/${categoriaID}`)
 
@@ -27,4 +27,16 @@ export const CategoriaApi = {
       );
     }
   },
+  consultaUnicaComPersonal: async (categoriaID,personalID) => {
+    try {
+      const resposta = await apiLocal.get(`/ConsultarCategoriaPorPersonal/${personalID}/${categoriaID}`)
+
+      return resposta
+    } catch (err) {
+      console.log(err);
+      
+     
+    }
+  },
+
 };

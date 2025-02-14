@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import { useBusca } from "../../../hook/useBusca/useBusca";
 
 export default function ListaAlunos() {
-  const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
+  const [dadosAluno, setDadosAluno] = useState([]); 
 
   const { verificarToken, token } = useContext(AutenticadoContexto);
   verificarToken();
 
-  // Passando o array direto para o hook de busca
-  const { listaFiltrada, termoBusca, setTermoBusca } = useBusca(dadosAluno.aluno, ["nome", "email", "telefone"]);
+ 
+  const { listaFiltrada, termoBusca, setTermoBusca } = useBusca(dadosAluno, ["nome", "email", "telefone"]);
 
   const Iid = localStorage.getItem("@id");
   const ID = Iid ? JSON.parse(Iid) : null;
@@ -22,7 +22,8 @@ export default function ListaAlunos() {
   const consultarDadosUsuarios = async () => {
     try {
       const resposta = await Personalapi.consultaUnica(ID, token);
-      setDadosAluno(resposta.data[0] || { aluno: [] });
+      setDadosAluno(resposta.data.aluno || []);
+      console.log(resposta.data.aluno);
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
     }

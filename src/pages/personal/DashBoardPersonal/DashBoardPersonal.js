@@ -7,8 +7,9 @@ import { AutenticadoContexto } from "../../../context/authContexts";
 import { Personalapi } from "../../../api/personalApi";
 
 export default function DashBoardPersonal() {
-  const [dadosUsuarios, setDadosUsuarios] = useState([""]);
-  const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
+  const [dadosUsuarios, setDadosUsuarios] = useState(null);
+  const [dadosAluno, setDadosAluno] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { verificarToken, token } = useContext(AutenticadoContexto);
   verificarToken();
@@ -17,18 +18,30 @@ export default function DashBoardPersonal() {
   const ID = Iid ? JSON.parse(Iid) : null;
 
   async function consultarDadosUsuarios() {
-    const resposta = await Personalapi.consultaUnica(ID, token);
-    setDadosUsuarios(resposta.data);
-    setDadosAluno(resposta.data[0] || { aluno: [] });
+    if (!ID) {
+      console.error("ID não encontrado no localStorage.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const resposta = await Personalapi.consultaUnica(ID, token);
+      setDadosUsuarios(resposta.data);
+      setDadosAluno(resposta.data.aluno || []);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erro ao buscar os dados do usuário:", error);
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     consultarDadosUsuarios();
-  }, []);
+  }, [ID, token]);
 
   return (
     <>
-      {dadosAluno.length === 0 ? (
+      {loading ? (
         <div className="dashboard-personal-container">
           <Header />
           <p>Carregando dados...</p>
@@ -45,7 +58,7 @@ export default function DashBoardPersonal() {
                 <div className="dashboard-description">
                   <p>Veja os alunos cadastrados</p>
                   <div className="alunos-ativos">
-                    <p>Ativos: {dadosAluno?.aluno?.length ?? 0}</p>
+                    <p>Ativos: {dadosAluno.length}</p>
                   </div>
                 </div>
               </Link>
@@ -63,13 +76,14 @@ export default function DashBoardPersonal() {
 
           <section className="personal-details">
             <h2>Meus Dados</h2>
-            {dadosUsuarios.map((personal) => (
-              <div key={personal.id} className="personal-card">
-                <h3>{personal.nome}</h3>
-                <p>{personal.email}</p>
-                <p>{personal.telefone}</p>
+
+            {dadosUsuarios && (
+              <div className="personal-card">
+                <h3>{dadosUsuarios.nome}</h3>
+                <p>{dadosUsuarios.email}</p>
+                <p>{dadosUsuarios.telefone}</p>
               </div>
-            ))}
+            )}
           </section>
         </div>
       )}
