@@ -119,13 +119,6 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
                   Categoria: {exercicio.exercicio.categoria.categoria}
                 </span>
                 <div className="exercicio-container">
-                  <div className="exercicio-video-container">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${exercicio.exercicio.URL_video}`}
-                      className="exercicio-video"
-                      title={exercicio.exercicio.nome_exercicio}
-                    ></iframe>
-                  </div>
 
                   <form
                     className="exercicio-detalhes"

@@ -32,7 +32,7 @@ export default function Categoria() {
             <input
               type="text"
               className="input-busca-aluno"
-              placeholder="Nome, E-mail, Telefone"
+              placeholder="Peito, Ombro, Costas"
               required
               value={termoBusca}
               onChange={(e) => setTermoBusca(e.target.value)}

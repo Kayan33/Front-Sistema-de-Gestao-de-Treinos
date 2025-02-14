@@ -1,6 +1,9 @@
   /* Lista de treinos */
   .container-aluno-unico-lista-treino {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
   
   .container-aluno-unico-treino {
