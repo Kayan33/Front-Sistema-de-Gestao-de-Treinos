@@ -69,8 +69,7 @@ export default function AlunoUnico() {
               </div>
             ) : (
               <>
-                <h3>{dadosAluno.nome}</h3>
-                <div className="container-aluno-unico-links">
+              <div className="container-aluno-unico-links">
                   <button onClick={togglePopup} className="BTN-adiciona">
                     Cadastrar Treino
                   </button>
@@ -90,6 +89,7 @@ export default function AlunoUnico() {
                     Consultar Treino
                   </button>
                 </div>
+                <h3>{dadosAluno.nome}</h3>
 
                 <div className="container-aluno-unico-lista-treino">
                   {dadosAluno.treino?.length > 0 ? (
