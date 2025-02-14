@@ -56,7 +56,9 @@ export default function AuthProvider({ children }) {
       toast.success("Login realizado com sucesso");
       window.location.href = "/DashBoardPersonal";
     } catch (err) {
-      toast.error(err.response?.data?.error || "Erro ao fazer login");
+      console.log(err);
+      
+      toast.error(err.response?.data?.message || "Erro ao fazer login");
     }
   }
 

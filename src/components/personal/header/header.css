@@ -8,8 +8,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 20px 0;
   border-bottom: 2px solid #ccc;
+  gap: 15px;
 }
 
 .header-personal h1 {
