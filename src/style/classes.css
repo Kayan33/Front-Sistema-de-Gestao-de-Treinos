@@ -4,18 +4,9 @@
   }
   
   .container-aluno-unico-treino {
-    background: var(--cor-branca);
+    background: var(--cor-cinza);
     border: 1px solid var(--cor-cinza);
     border-radius: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-
-  .container-aluno-unico-treino:hover {
-    background: var(--cor-cinza-clara);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
 
 /* Botão */
