@@ -5,6 +5,7 @@ import Header from "../../../components/personal/header/header";
 import HeaderCadastroAluno from "../../../components/personal/headerCadastroAluno/headerCadastroAluno";
 import { AutenticadoContexto } from "../../../context/authContexts";
 import { Personalapi } from "../../../api/personalApi";
+import Loading from "../../../components/Loading/Loading"; // Importa o componente de Loading
 
 export default function DashBoardPersonal() {
   const [dadosUsuarios, setDadosUsuarios] = useState(null);
@@ -28,9 +29,9 @@ export default function DashBoardPersonal() {
       const resposta = await Personalapi.consultaUnica(ID, token);
       setDadosUsuarios(resposta.data);
       setDadosAluno(resposta.data.aluno || []);
-      setLoading(false);
     } catch (error) {
       console.error("Erro ao buscar os dados do usuário:", error);
+    } finally {
       setLoading(false);
     }
   }
@@ -39,54 +40,47 @@ export default function DashBoardPersonal() {
     consultarDadosUsuarios();
   }, [ID, token]);
 
+
+
   return (
-    <>
-      {loading ? (
-        <div className="dashboard-personal-container">
-          <Header />
-          <p>Carregando dados...</p>
-        </div>
-      ) : (
-        <div className="dashboard-personal-container">
-          <Header />
-          <HeaderCadastroAluno onAlunoCadastrado={consultarDadosUsuarios} />
+    <div className="dashboard-personal-container">
+      <Header />
+      <HeaderCadastroAluno onAlunoCadastrado={consultarDadosUsuarios} />
+      <Loading loading={loading} /> 
 
-          <section className="dashboard-links">
-            <div className="dashboard-card">
-              <Link to="/cliente/lista" className="dashboard-link">
-                <h3 className="dashboard-title">Alunos</h3>
-                <div className="dashboard-description">
-                  <p>Veja os alunos cadastrados</p>
-                  <div className="alunos-ativos">
-                    <p>Ativos: {dadosAluno.length}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <div className="dashboard-card">
-              <Link to="/Categoria" className="dashboard-link">
-                <h3 className="dashboard-title">Exercícios</h3>
-                <p className="dashboard-description">
-                  Aqui você vê, cria e edita exercícios.
-                </p>
-              </Link>
-            </div>
-          </section>
-
-          <section className="personal-details">
-            <h2>Meus Dados</h2>
-
-            {dadosUsuarios && (
-              <div className="personal-card">
-                <h3>{dadosUsuarios.nome}</h3>
-                <p>{dadosUsuarios.email}</p>
-                <p>{dadosUsuarios.telefone}</p>
+      <section className="dashboard-links">
+        <div className="dashboard-card">
+          <Link to="/cliente/lista" className="dashboard-link">
+            <h3 className="dashboard-title">Alunos</h3>
+            <div className="dashboard-description">
+              <p>Veja os alunos cadastrados</p>
+              <div className="alunos-ativos">
+                <p>Ativos: {dadosAluno.length}</p>
               </div>
-            )}
-          </section>
+            </div>
+          </Link>
         </div>
-      )}
-    </>
+
+        <div className="dashboard-card">
+          <Link to="/Categoria" className="dashboard-link">
+            <h3 className="dashboard-title">Exercícios</h3>
+            <p className="dashboard-description">
+              Aqui você vê, cria e edita exercícios.
+            </p>
+          </Link>
+        </div>
+      </section>
+
+      <section className="personal-details">
+        <h2>Meus Dados</h2>
+        {dadosUsuarios && (
+          <div className="personal-card">
+            <h3>{dadosUsuarios.nome}</h3>
+            <p>{dadosUsuarios.email}</p>
+            <p>{dadosUsuarios.telefone}</p>
+          </div>
+        )}
+      </section>
+    </div>
   );
 }

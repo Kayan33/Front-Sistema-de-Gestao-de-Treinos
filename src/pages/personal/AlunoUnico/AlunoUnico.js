@@ -1,7 +1,7 @@
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../../components/personal/header/header";
 import { Personalapi } from "../../../api/personalApi";
-import { useContext, useEffect, useState } from "react";
 import { AutenticadoContexto } from "../../../context/authContexts";
 import "./AlunoUnico.css";
 import "../../../style/classes.css";
@@ -10,6 +10,7 @@ import { treinoAPI } from "../../../api/treinoApi";
 import ConsultaTodosTreinos from "../../../components/personal/ConsultaTodosTreinos/ConsultaTodosTreinos";
 import ConsultaTreinoComExercicios from "../../../components/personal/ConsultaTreinoComExercicios/ConsultaTreinoComExercicios";
 import { BsArrowDownCircleFill } from "react-icons/bs";
+import Loading from "../../../components/Loading/Loading"; 
 
 export default function AlunoUnico() {
   const [dadosAluno, setDadosAluno] = useState({ aluno: [] });
@@ -17,6 +18,7 @@ export default function AlunoUnico() {
   const [nome_treino, setNome_treino] = useState("");
   const [abrir, setAbrir] = useState(false);
   const [treinoSelecionado, setTreinoSelecionado] = useState(null);
+    const [loading, setLoading] = useState(true);
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -29,13 +31,20 @@ export default function AlunoUnico() {
   const ID = Iid ? JSON.parse(Iid) : null;
 
   async function consultarDadosUsuarios() {
-    const resposta = await Personalapi.consultaPcomA(ID, aluno, token);
-    setDadosAluno(resposta.data?.aluno?.[0] || { aluno: [] });
+    setLoading(true); 
+    try {
+      const resposta = await Personalapi.consultaPcomA(ID, aluno, token);
+      setDadosAluno(resposta.data?.aluno?.[0] || { aluno: [] });
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
+    } finally {
+      setLoading(false); 
+    }
   }
 
   useEffect(() => {
     consultarDadosUsuarios();
-  }, []);
+  }, [aluno, ID, token]);
 
   async function CadastroTreino(e) {
     e.preventDefault();
@@ -55,13 +64,12 @@ export default function AlunoUnico() {
     }
   };
 
+
+ 
   return (
-    <>
-      {dadosAluno.length === 0 ? (
-        <div>zero dados</div>
-      ) : (
         <div className="dashboard-personal-container">
           <Header />
+          <Loading loading={loading} /> 
           <div className="container-aluno-unico">
             {abrir ? (
               <div>
@@ -69,7 +77,7 @@ export default function AlunoUnico() {
               </div>
             ) : (
               <>
-              <div className="container-aluno-unico-links">
+                <div className="container-aluno-unico-links">
                   <button onClick={togglePopup} className="BTN-adiciona">
                     Cadastrar Treino
                   </button>
@@ -110,47 +118,47 @@ export default function AlunoUnico() {
                           <div className="container-treino-nome">
                             <h1>{treino.nome_treino}</h1>
                             <div className="classes-treino-nome-button">
+                              <button
+                                className="BTN-remove"
+                                onClick={() => DeleteTreino(treino.id)}
+                              >
+                                Delete
+                              </button>
 
-                            <button
-                              className="BTN-remove"
-                              onClick={() => DeleteTreino(treino.id)}
-                            >
-                              Delete
-                            </button>
-
-                            <a
-                              className="BTN-expandir"
-                              onClick={() => handleTreinoClick(treino)}
-                            >
-                              <BsArrowDownCircleFill
-                                style={{
-                                  fontSize: "2rem",
-                                  color:
-                                    treinoSelecionado?.id === treino.id
-                                      ? "#FFD700"
-                                      : "#001f5c",
-                                  transform:
-                                    treinoSelecionado?.id === treino.id
-                                      ? "rotate(180deg)"
-                                      : "rotate(0deg)",
-                                  transition: "transform 0.3s ease",
-                                }}
-                              />
-                            </a>
+                              <a
+                                className="BTN-expandir"
+                                onClick={() => handleTreinoClick(treino)}
+                              >
+                                <BsArrowDownCircleFill
+                                  style={{
+                                    fontSize: "2rem",
+                                    color:
+                                      treinoSelecionado?.id === treino.id
+                                        ? "#FFD700"
+                                        : "#001f5c",
+                                    transform:
+                                      treinoSelecionado?.id === treino.id
+                                        ? "rotate(180deg)"
+                                        : "rotate(0deg)",
+                                    transition: "transform 0.3s ease",
+                                  }}
+                                />
+                              </a>
                             </div>
                           </div>
                         )}
                       </div>
                     ))
                   ) : (
-                    <p className="msg-nenhum-exercicio">Nenhum treino cadastrado.</p>
+                    <p className="msg-nenhum-exercicio">
+                      Nenhum treino cadastrado.
+                    </p>
                   )}
                 </div>
               </>
             )}
           </div>
         </div>
-      )}
-    </>
+
   );
 }

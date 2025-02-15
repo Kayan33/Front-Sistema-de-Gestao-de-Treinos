@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import Header from "../../../components/personal/header/header";
-
 import "./ListaAlunos.css";
 import { Personalapi } from "../../../api/personalApi";
 import { AutenticadoContexto } from "../../../context/authContexts";
 import { Link } from "react-router-dom";
 import { useBusca } from "../../../hook/useBusca/useBusca";
+import Loading from "../../../components/Loading/Loading";  
 
 export default function ListaAlunos() {
-  const [dadosAluno, setDadosAluno] = useState([]); 
+  const [dadosAluno, setDadosAluno] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   const { verificarToken, token } = useContext(AutenticadoContexto);
   verificarToken();
 
- 
   const { listaFiltrada, termoBusca, setTermoBusca } = useBusca(dadosAluno, ["nome", "email", "telefone"]);
 
   const Iid = localStorage.getItem("@id");
@@ -26,6 +26,8 @@ export default function ListaAlunos() {
       console.log(resposta.data.aluno);
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
+    } finally {
+      setLoading(false);  
     }
   };
 
@@ -33,10 +35,12 @@ export default function ListaAlunos() {
     consultarDadosUsuarios();
   }, [ID, token]);
 
+
+
   return (
     <div className="dashboard-personal-container">
       <Header />
-
+      <Loading loading={loading} /> 
       <div className="container-lista-aluno">
         <form className="form-busca-aluno">
           <input
@@ -48,6 +52,8 @@ export default function ListaAlunos() {
             onChange={(e) => setTermoBusca(e.target.value)}
           />
         </form>
+
+       
 
         <div className="container-todos-alunos">
           <h2>Lista de Alunos</h2>

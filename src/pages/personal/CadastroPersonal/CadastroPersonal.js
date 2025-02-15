@@ -54,8 +54,11 @@ export default function CadastroPersonal() {
         senha,
         aluno,
       });
-      navigate("/login/personal");
+
+      
+       
     } catch (error) {
+      console.error("Erro no cadastro:", error);
       toast.error("Erro ao cadastrar. Tente novamente.");
     }
   };
@@ -121,7 +124,7 @@ export default function CadastroPersonal() {
               <option value="feminino">Feminino</option>
             </select>
           </div>
-            <div className="senha-container">
+          <div className="senha-container">
             <label className="login-cadastro-personal-label">Senha</label>
             <input
               type={visivelS ? "text" : "password"}

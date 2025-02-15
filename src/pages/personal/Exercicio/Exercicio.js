@@ -8,9 +8,11 @@ import PopupCadastrarExercicio from "../../../components/personal/PopupCadastrar
 import PopupVideio from "../../../components/personal/popupVideio/popupVideio";
 import { ExercicioApi } from "../../../api/ExercicioApi";
 import { CategoriaApi } from "../../../api/CategoriaApi";
+import Loading from "../../../components/Loading/Loading"; 
 
 export default function Exercicio() {
   const [exercicio, setExercicio] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isPopupCadastroOpen, setIsPopupCadastroOpen] = useState(false);
   const [isPopupVideoOpen, setIsPopupVideoOpen] = useState(false);
   const [selectedExercicio, setSelectedExercicio] = useState(null);
@@ -20,14 +22,19 @@ export default function Exercicio() {
   const { categoriaID } = useParams();
   const { verificarToken, token } = useContext(AutenticadoContexto);
 
-  verificarToken();
+  useEffect(() => {
+    verificarToken();
+  }, []);
 
   async function ConsultaUnica() {
+    setLoading(true);
     try {
       const resposta = await CategoriaApi.consultaUnica(categoriaID);
       setExercicio(resposta.data);
     } catch (error) {
       console.error("Erro ao buscar exercícios:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -36,6 +43,7 @@ export default function Exercicio() {
   }, [categoriaID]);
 
   async function CadastrarExercicio() {
+    setLoading(true);
     await ExercicioApi.cadastro(nome_exercicio, URL_video, categoriaID);
     setNome_exercicio("");
     setURL_video("");
@@ -43,6 +51,7 @@ export default function Exercicio() {
   }
 
   async function DeleteExercicio(ID) {
+    setLoading(true);
     await ExercicioApi.delete(ID);
     await ConsultaUnica();
   }
@@ -55,6 +64,7 @@ export default function Exercicio() {
   return (
     <div className="dashboard-personal-container">
       <Header />
+      <Loading loading={loading} /> 
       <div className="container-aluno-unico">
         <div className="container-aluno-unico-links">
           <form className="form-busca-aluno">
@@ -86,15 +96,14 @@ export default function Exercicio() {
           </button>
         </div>
 
-        {exercicio ? (
+        
           <div className="exercicios-wrapper">
-            <h1 className="titulo-exercicios">{exercicio.categoria}</h1>
+            <h1 className="titulo-exercicios">{exercicio?.categoria || "Sem categoria"}</h1>
             {listaFiltrada.length > 0 ? (
               <ul className="lista-exercicios">
                 {listaFiltrada.map((item) => (
                   <li key={item.id} className="item-exercicio">
                     <p>{item.nome_exercicio}</p>
-
                     <a
                       className="link-exercicio"
                       onClick={() => {
@@ -114,14 +123,9 @@ export default function Exercicio() {
                 ))}
               </ul>
             ) : (
-              <p className="msg-nenhum-exercicio">
-                Nenhum exercício encontrado.
-              </p>
+              <p className="msg-nenhum-exercicio">Nenhum exercício encontrado.</p>
             )}
           </div>
-        ) : (
-          <p>Carregando...</p>
-        )}
       </div>
 
       {isPopupVideoOpen && selectedExercicio && (

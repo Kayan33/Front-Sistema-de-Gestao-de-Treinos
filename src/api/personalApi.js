@@ -1,16 +1,12 @@
 import { toast } from "react-toastify";
 import apiLocal from "./apilocal/apiLocal";
+import { useNavigate } from "react-router-dom";
 
 export const Personalapi = {
-  CadastrarPersonal: async ({
-    nome,
-    telefone,
-    email,
-    CREF,
-    sexo,
-    senha,
-    aluno,
-  }) => {
+  CadastrarPersonal: async (
+    { nome, telefone, email, CREF, sexo, senha, aluno },
+    navigate
+  ) => {
     try {
       const response = await apiLocal.post(`/CadastrarPersonal`, {
         nome: nome,
@@ -23,13 +19,15 @@ export const Personalapi = {
       });
 
       toast.success("Cadastro feito com sucesso!");
-
+      navigate("/login/personal");
       return response.data;
-    } catch (error) {
-      toast.error(`Erro ao cadastrar o personal`);
-      console.log(error);
-
-      throw error;
+    } catch (err) {
+      toast.error(
+        err.response.data.erro ||
+          err.response.data.message ||
+          "Erro ao cadastrar"
+      );
+      console.log(err);
     }
   },
 
