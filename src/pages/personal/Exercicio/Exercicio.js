@@ -9,6 +9,8 @@ import PopupVideio from "../../../components/personal/popupVideio/popupVideio";
 import { ExercicioApi } from "../../../api/ExercicioApi";
 import { CategoriaApi } from "../../../api/CategoriaApi";
 import Loading from "../../../components/Loading/Loading"; 
+import { extrairIdDoYoutube } from "../../../services/utils/validacoes";
+import { toast } from "react-toastify";
 
 export default function Exercicio() {
   const [exercicio, setExercicio] = useState(null);
@@ -44,11 +46,22 @@ export default function Exercicio() {
 
   async function CadastrarExercicio() {
     setLoading(true);
-    await ExercicioApi.cadastro(nome_exercicio, URL_video, categoriaID);
+    
+    const videoID = extrairIdDoYoutube(URL_video);
+    if (!videoID) {
+      toast.error("URL de vídeo inválida!");
+      setLoading(false);
+      return;
+    }
+  
+    await ExercicioApi.cadastro(nome_exercicio,videoID, categoriaID);
+    
     setNome_exercicio("");
-    setURL_video("");
+    setURL_video(""); 
+    setIsPopupCadastroOpen(false)
     await ConsultaUnica();
   }
+  
 
   async function DeleteExercicio(ID) {
     setLoading(true);

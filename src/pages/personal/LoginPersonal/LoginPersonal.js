@@ -12,7 +12,6 @@ export default function LoginPersonal() {
   const [senha, setSenha] = useState("");
   const [visivelS, setvisivelS] = useState(false);
 
-  const navigate = useNavigate();
 
   async function dadosLogin(e) {
     e.preventDefault();

@@ -29,3 +29,10 @@ export const validarSenhaForte = (senha) => {
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
   return regex.test(senha);
 };
+
+export const extrairIdDoYoutube=(url)=> {
+  const regex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
+
