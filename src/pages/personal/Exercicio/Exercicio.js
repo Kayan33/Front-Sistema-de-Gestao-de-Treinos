@@ -24,6 +24,9 @@ export default function Exercicio() {
   const { categoriaID } = useParams();
   const { verificarToken, token } = useContext(AutenticadoContexto);
 
+  const Iid = localStorage.getItem("@id");
+  const personalID = Iid ? JSON.parse(Iid) : null;
+
   useEffect(() => {
     verificarToken();
   }, []);
@@ -31,8 +34,10 @@ export default function Exercicio() {
   async function ConsultaUnica() {
     setLoading(true);
     try {
-      const resposta = await CategoriaApi.consultaUnica(categoriaID);
+      const resposta = await ExercicioApi.consultaPorPersonalECategoria(categoriaID,personalID);
       setExercicio(resposta.data);
+    
+      
     } catch (error) {
       console.error("Erro ao buscar exercícios:", error);
     } finally {
@@ -54,7 +59,7 @@ export default function Exercicio() {
       return;
     }
   
-    await ExercicioApi.cadastro(nome_exercicio,videoID, categoriaID);
+    await ExercicioApi.cadastro(nome_exercicio,videoID, categoriaID,personalID);
     
     setNome_exercicio("");
     setURL_video(""); 
@@ -70,7 +75,7 @@ export default function Exercicio() {
   }
 
   const { listaFiltrada, termoBusca, setTermoBusca } = useBusca(
-    exercicio ? exercicio.exercicios : [],
+    exercicio ? exercicio : [],
     ["nome_exercicio"]
   );
 

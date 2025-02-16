@@ -5,7 +5,7 @@ import Header from "../../../components/personal/header/header";
 import HeaderCadastroAluno from "../../../components/personal/headerCadastroAluno/headerCadastroAluno";
 import { AutenticadoContexto } from "../../../context/authContexts";
 import { Personalapi } from "../../../api/personalApi";
-import Loading from "../../../components/Loading/Loading"; // Importa o componente de Loading
+import Loading from "../../../components/Loading/Loading"; 
 
 export default function DashBoardPersonal() {
   const [dadosUsuarios, setDadosUsuarios] = useState(null);

@@ -43,8 +43,6 @@ export default function CadastroPersonal() {
       );
       return;
     }
-
-    try {
       await Personalapi.CadastrarPersonal({
         nome,
         telefone,
@@ -54,13 +52,6 @@ export default function CadastroPersonal() {
         senha,
         aluno,
       });
-
-      
-       
-    } catch (error) {
-      console.error("Erro no cadastro:", error);
-      toast.error("Erro ao cadastrar. Tente novamente.");
-    }
   };
 
   return (

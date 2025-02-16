@@ -1,14 +1,15 @@
 import { toast } from "react-toastify";
 import apiLocal from "./apilocal/apiLocal";
-import { data } from "react-router-dom";
+
 
 export const ExercicioApi = {
-  cadastro : async(nome_exercicio,URL_video,categoriaID)=>{
+  cadastro : async(nome_exercicio,URL_video,categoriaID,personalID)=>{
     try {
       const resposta = await apiLocal.post(`CadastrarExercicios`,{
         nome_exercicio,
         URL_video,
-        categoriaID
+        categoriaID,
+        personalID
       })
       toast.success("Cadastro Realizado com sucesso")
       return resposta
@@ -16,6 +17,19 @@ export const ExercicioApi = {
       console.log(err);
       toast.error(
         err.response?.data?.error || "Erro desconhecido. Tente novamente."
+      );
+    }
+  },
+
+  consultaPorPersonalECategoria: async (categoriaID,personalID) => {
+    try {
+      const resposta = await apiLocal.post(`/ConsultapersonalExerciciosCategoria/${categoriaID}/${personalID}`)
+
+      return resposta
+    } catch (err) {
+      console.log(err);
+      toast.error(
+        err.response?.data?.error|| err.response?.data?.message || "Erro desconhecido. Tente novamente."
       );
     }
   },
