@@ -15,7 +15,7 @@ export default function Header() {
     <header className="header-personal">
       <h1>Bem-vindo {primeiroNome}</h1>
       <div className="navigation-personal">
-        <Link to="/assinatura" className="navigation-personal-link">
+        {/* <Link to="/assinatura" className="navigation-personal-link">
           Assinatura
         </Link>
         <Link to="/ajuda" className="navigation-personal-link">
@@ -23,7 +23,7 @@ export default function Header() {
         </Link>
         <Link to="/perfil" className="navigation-personal-link">
           Perfil
-        </Link>
+        </Link> */}
 
         <Link className="logout" onClick={logout}>
           logout
