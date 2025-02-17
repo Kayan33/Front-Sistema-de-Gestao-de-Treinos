@@ -1,6 +1,5 @@
 import "../../../style/classes.css";
 import "./PopupCadastrarExercicio.css";
-import { toast } from "react-toastify";
 
 const PopupCadastrarExercicio = ({
   isOpen,
@@ -13,10 +12,6 @@ const PopupCadastrarExercicio = ({
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!nome_exercicio || !URL_video) {
-      toast.error("Preencha todos os campos!");
-      return;
-    }
     onSubmit({ nome_exercicio, URL_video });
   };
 
@@ -40,16 +35,19 @@ const PopupCadastrarExercicio = ({
                 onChange={(e) => setNome_exercicio(e.target.value)}
                 required
               />
-
-              <input
-                type="text"
-                className="form-input-number"
-                placeholder="URL do vídeo"
-                value={URL_video}
-                onChange={(e) => setURL_video(e.target.value)}
-                required
-              />
-
+              <div>
+              <p>*Opicional</p>
+                <div>
+                <input
+                  type="text"
+                  className="form-input-number"
+                  placeholder="URL videio do youtube"
+                  value={URL_video}
+                  onChange={(e) => setURL_video(e.target.value)}
+                  
+                />
+                </div>
+              </div>
               <button type="submit" className="form-button">
                 Cadastrar
               </button>

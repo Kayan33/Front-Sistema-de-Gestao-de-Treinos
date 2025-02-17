@@ -8,7 +8,7 @@ import PopupCadastrarExercicio from "../../../components/personal/PopupCadastrar
 import PopupVideio from "../../../components/personal/popupVideio/popupVideio";
 import { ExercicioApi } from "../../../api/ExercicioApi";
 import { CategoriaApi } from "../../../api/CategoriaApi";
-import Loading from "../../../components/Loading/Loading"; 
+import Loading from "../../../components/Loading/Loading";
 import { extrairIdDoYoutube } from "../../../services/utils/validacoes";
 import { toast } from "react-toastify";
 
@@ -34,10 +34,13 @@ export default function Exercicio() {
   async function ConsultaUnica() {
     setLoading(true);
     try {
-      const resposta = await ExercicioApi.consultaPorPersonalECategoria(categoriaID,personalID);
+      const resposta = await ExercicioApi.consultaPorPersonalECategoria(
+        categoriaID,
+        personalID
+      );
       setExercicio(resposta.data);
-    
-      
+
+      console.log(resposta);
     } catch (error) {
       console.error("Erro ao buscar exercícios:", error);
     } finally {
@@ -51,22 +54,27 @@ export default function Exercicio() {
 
   async function CadastrarExercicio() {
     setLoading(true);
-    
-    const videoID = extrairIdDoYoutube(URL_video);
-    if (!videoID) {
+
+    const videoID = URL_video ? extrairIdDoYoutube(URL_video) : null;
+
+    if (URL_video && !videoID) {
       toast.error("URL de vídeo inválida!");
       setLoading(false);
       return;
     }
-  
-    await ExercicioApi.cadastro(nome_exercicio,videoID, categoriaID,personalID);
-    
+
+    await ExercicioApi.cadastro(
+      nome_exercicio,
+      videoID,
+      categoriaID,
+      personalID
+    );
+
     setNome_exercicio("");
-    setURL_video(""); 
-    setIsPopupCadastroOpen(false)
+    setURL_video("");
+    setIsPopupCadastroOpen(false);
     await ConsultaUnica();
   }
-  
 
   async function DeleteExercicio(ID) {
     setLoading(true);
@@ -82,7 +90,7 @@ export default function Exercicio() {
   return (
     <div className="dashboard-personal-container">
       <Header />
-      <Loading loading={loading} /> 
+      <Loading loading={loading} />
       <div className="container-aluno-unico">
         <div className="container-aluno-unico-links">
           <form className="form-busca-aluno">
@@ -114,36 +122,37 @@ export default function Exercicio() {
           </button>
         </div>
 
-        
-          <div className="exercicios-wrapper">
-            <h1 className="titulo-exercicios">{exercicio?.categoria || "Sem categoria"}</h1>
-            {listaFiltrada.length > 0 ? (
-              <ul className="lista-exercicios">
-                {listaFiltrada.map((item) => (
-                  <li key={item.id} className="item-exercicio">
-                    <p>{item.nome_exercicio}</p>
-                    <a
-                      className="link-exercicio"
-                      onClick={() => {
-                        setSelectedExercicio(item);
-                        setIsPopupVideoOpen(true);
-                      }}
-                    >
-                      Ver vídeo
-                    </a>
-                    <button
-                      className="BTN-remove"
-                      onClick={() => DeleteExercicio(item.id)}
-                    >
-                      -
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="msg-nenhum-exercicio">Nenhum exercício encontrado.</p>
-            )}
-          </div>
+        <div className="exercicios-wrapper">
+          <h1 className="titulo-exercicios">
+            {exercicio?.categoria || "Sem categoria"}
+          </h1>
+          {listaFiltrada.length > 0 ? (
+            <ul className="lista-exercicios">
+              {listaFiltrada.map((item) => (
+                <li key={item.id} className="item-exercicio">
+                  <p>{item.nome_exercicio}</p>
+                  <a
+                    className="link-exercicio"
+                    onClick={() => {
+                      setSelectedExercicio(item);
+                      setIsPopupVideoOpen(true);
+                    }}
+                  >
+                    Ver vídeo
+                  </a>
+                  <button
+                    className="BTN-remove"
+                    onClick={() => DeleteExercicio(item.id)}
+                  >
+                    -
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="msg-nenhum-exercicio">Nenhum exercício encontrado.</p>
+          )}
+        </div>
       </div>
 
       {isPopupVideoOpen && selectedExercicio && (
