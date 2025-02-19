@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./DashBoardPersonal.css";
 import Header from "../../../components/personal/header/header";
 import HeaderCadastroAluno from "../../../components/personal/headerCadastroAluno/headerCadastroAluno";
@@ -12,8 +12,10 @@ export default function DashBoardPersonal() {
   const [dadosAluno, setDadosAluno] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { verificarToken, token } = useContext(AutenticadoContexto);
+  
+  const { verificarToken, token,} = useContext(AutenticadoContexto);
   verificarToken();
+  
 
   const Iid = localStorage.getItem("@id");
   const ID = Iid ? JSON.parse(Iid) : null;
@@ -38,6 +40,7 @@ export default function DashBoardPersonal() {
 
   useEffect(() => {
     consultarDadosUsuarios();
+    
   }, [ID, token]);
 
 

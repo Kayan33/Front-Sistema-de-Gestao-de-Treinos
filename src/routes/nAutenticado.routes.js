@@ -8,6 +8,7 @@ import CadastroAluno from "../pages/Aluno/CadastroAluno/CadastroAluno";
 import ConvitePersonal from "../components/Aluno/ConvitePersonal/ConvitePersonal";
 import DashboardAluno from "../pages/Aluno/DashboardAluno/DashboardAluno";
 import PaginaPrincipal from "../pages/header/PaginaPrincipal";
+import NotFound from "../pages/personal/NotFound/NotFound";
 
 export default function Nautentificado() {
 
@@ -28,6 +29,7 @@ export default function Nautentificado() {
         <Route path="/dashboard/aluno" element={<DashboardAluno/>}/>
 
         <Route path="/" element={<PaginaPrincipal/>}/>
+         
       </Routes>
     </BrowserRouter>
   )

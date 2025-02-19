@@ -1,0 +1,29 @@
+
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    text-align: center;
+    font-size: 18px;
+    flex-direction: column; 
+}
+
+.not-found-container h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.not-found-container p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.not-found-container a {
+    color: blue;
+    text-decoration: underline;
+}
+
+.not-found-container a:hover {
+    text-decoration: none;
+}
