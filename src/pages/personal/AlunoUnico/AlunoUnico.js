@@ -50,6 +50,7 @@ export default function AlunoUnico() {
     e.preventDefault();
     await treinoAPI.Cadastro(nome_treino, aluno, ID, token);
     setNome_treino("");
+    setIsPopupOpen(false)
     await consultarDadosUsuarios();
   }
 

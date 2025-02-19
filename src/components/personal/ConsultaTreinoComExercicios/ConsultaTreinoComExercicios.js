@@ -71,8 +71,8 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
   };
 
   async function DeleteExercicio(id) {
-    
-    
+    await ExercicioDetalhadoApi.Deletar(id)
+    await consultarDadosUsuarios();
   }
 
   useEffect(() => {

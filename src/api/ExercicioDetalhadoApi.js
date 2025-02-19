@@ -11,6 +11,7 @@ export const ExercicioDetalhadoApi = {
       });
       toast.success("Exercício cadastrado com sucesso!");
       return resposta;
+      
     } catch (err) {
       toast.error(
         err.response?.data?.error || "Erro desconhecido. Tente novamente."
@@ -35,12 +36,14 @@ export const ExercicioDetalhadoApi = {
 
   Deletar : async(id)=> {
     try {
-      const resposta = await apiLocal.delete(`DeletarExercicioDelatalhado/${id}`)
-     toast.success(`Treino Excluido com sucesso`)
+      const resposta = await apiLocal.delete(`/ApagarExerciciosComAluno/${id}`)
+     toast.success(`Exercicios Excluido com sucesso`)
       return resposta
     } catch (err) {
+      console.log(err);
+      
       toast.error(
-        err.response?.data?.error || "Erro desconhecido. Tente novamente."
+        err.response?.data?.error ||  err.response?.data?.message ||"Erro desconhecido. Tente novamente."
       );
     }
   }
