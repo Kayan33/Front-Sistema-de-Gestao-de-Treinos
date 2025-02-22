@@ -5,10 +5,12 @@ import AuthProvider from "./context/authContexts";
 function App() {
   return (
     <AuthProvider>
-      <Rotas/>
-      <ToastContainer
+      <div>
+        <Rotas />
+        <ToastContainer
           autoClose={5000}
         />
+      </div>
     </AuthProvider>
   );
 }

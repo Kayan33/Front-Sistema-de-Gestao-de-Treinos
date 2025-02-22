@@ -7,6 +7,10 @@ export default function PaginaPrincipal() {
   const nome = Inome ? JSON.parse(Inome) : null;
   const primeiroNome = nome ? nome.split(" ")[0] : "";
 
+  const AlunoInome = localStorage.getItem("@nomealuno");
+  const nomeAluno = AlunoInome ? JSON.parse(AlunoInome) : null;
+  const primeiroNomeAluno= nomeAluno ? nomeAluno.split(" ")[0] : "";
+
   return (
     <div className="container">
       <header className="header">
@@ -38,9 +42,17 @@ export default function PaginaPrincipal() {
             personalizados e acompanhar seu progresso.
           </p>
 
-          <Link to="/login/aluno" className="button aluno">
+          
+
+          {primeiroNomeAluno ? (
+            <a href="/dashboard/aluno" className="button personal">
+              Acessar Área do Personal
+            </a>
+          ) : (
+            <Link to="/login/aluno" className="button aluno">
             Acessar Área do Aluno
           </Link>
+          )}
         </section>
 
         <section className="section area">

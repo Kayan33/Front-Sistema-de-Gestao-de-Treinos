@@ -1,5 +1,5 @@
 import './popupConectaAluno.css'; 
-const Popup = ({ isOpen, togglePopup, onSubmit, aluno, setAluno }) => {
+const Popup = ({ isOpen, togglePopup, onSubmit, email, setEmail}) => {
     return (
       isOpen && (
         <div className="popup-overlay" onClick={togglePopup}>
@@ -23,8 +23,8 @@ const Popup = ({ isOpen, togglePopup, onSubmit, aluno, setAluno }) => {
                   id="email"
                   className="form-input"
                   placeholder="Digite o email do aluno"
-                  value={aluno}
-                  onChange={(e) => setAluno(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 </div>

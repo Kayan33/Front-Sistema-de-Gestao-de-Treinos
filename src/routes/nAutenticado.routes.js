@@ -25,8 +25,7 @@ export default function Nautentificado() {
         <Route path="/login/aluno" element={<LoginAluno/>}/>
         <Route path="/cadastro/aluno" element={<CadastroAluno/>}/>
 
-        <Route path="/convite" element={<ConvitePersonal/>}/>
-        <Route path="/dashboard/aluno" element={<DashboardAluno/>}/>
+        
 
         <Route path="/" element={<PaginaPrincipal/>}/>
          

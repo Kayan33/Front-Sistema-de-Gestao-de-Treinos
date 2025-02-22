@@ -1,43 +1,80 @@
+import { useContext, useEffect, useState } from "react";
 import "./DashboardAluno.css";
+import { AutenticadoContexto } from "../../../context/authContexts";
+import { alunoApi } from "../../../api/alunoApi";
+import HeaderAluno from "../../../components/Aluno/Header/Header";
+import ConvitePersonal from "../../../components/Aluno/ConvitePersonal/ConvitePersonal";
 
 export default function DashboardAluno() {
+  const [loading, setLoading] = useState(true);
+  const [dadosUsuarios, setDadosUsuarios] = useState(null);
+  const [mostrarPopup, setMostrarPopup] = useState(false);
+  const { VerificaTokenAluno, token } = useContext(AutenticadoContexto);
+
+  const Iid = localStorage.getItem("@idaluno");
+  const ID = Iid ? JSON.parse(Iid) : null;
+
+  useEffect(() => {
+    VerificaTokenAluno();
+  }, []);
+
+  async function consultarDadosUsuarios() {
+    if (!ID) {
+      console.error("ID não encontrado no localStorage.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const resposta = await alunoApi.consultaUnica(ID);
+      setDadosUsuarios(resposta.data);
+console.log(resposta.data);
+
+      if (resposta.data.convite?.some(convite => convite.status === "PENDENTE")) {
+        setTimeout(() => setMostrarPopup(true), 10000);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar os dados do usuário:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    consultarDadosUsuarios();
+  }, [ID, token]);
+
   return (
-    <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1 className="dashboard-title-aluno">Dashboard do Aluno</h1>
-        <p className="dashboard-subtitle">Acompanhe seu treino e progresso!</p>
-      </header>
+    <div className="dashboard-personal-container">
+      <HeaderAluno />
 
-      <div className="dashboard-content">
-        {/* Seção do Próximo Treino */}
-        <section className="next-workout">
-          <h2 className="section-title">Próximo Treino Agendado</h2>
-          <div className="workout-info">
-            <p>Data: <span className="highlight-text">18/02/2025</span></p>
-            <p>Horário: <span className="highlight-text">08:00 AM</span></p>
-          </div>
-          <button className="btn btn-primary">Iniciar Treino</button>
-        </section>
+      {mostrarPopup && <ConvitePersonal />}
 
-        {/* Seção de Atalhos */}
-        <section className="shortcuts">
-          <h2 className="section-title">Atalhos</h2>
-          <div className="shortcut-buttons">
-            <button className="btn btn-secondary">Histórico</button>
-            <button className="btn btn-secondary">Chat com Personal</button>
-            <button className="btn btn-secondary">Configurações</button>
-          </div>
-        </section>
-
-        {/* Seção de Estatísticas */}
-        <section className="statistics">
-          <h2 className="section-title">Estatísticas de Progresso</h2>
-          <div className="progress-bar-container">
-            <div className="progress-bar" style={{ width: "75%" }}></div>
-          </div>
-          <p className="progress-text">75% do treino completado</p>
-        </section>
+      <div className="dados-usuario-personal">
+        {dadosUsuarios?.personal ? (
+          <>
+            <p>Personal Trainer: {dadosUsuarios.personal.nome}</p>
+            <p>Email: {dadosUsuarios.personal.email}</p>
+            <p>Email: {dadosUsuarios.personal.telefone}</p>
+          </>
+        ) : (
+          <>
+            <p>Nenhum personal adicionado</p>
+            <h1>Peça para seu Personal se cadastrar no site</h1>
+            <p>Faça o cadastro e mande um convite para você pelo e-mail de criação</p>
+          </>
+        )}
       </div>
+
+      {dadosUsuarios && (
+        <div className="personal-details">
+          <div className="personal-card">
+            <h3>{dadosUsuarios.nome}</h3>
+            <p>{dadosUsuarios.email}</p>
+            <p>{dadosUsuarios.telefone}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

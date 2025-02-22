@@ -13,8 +13,9 @@ export default function DashBoardPersonal() {
   const [loading, setLoading] = useState(true);
 
   
-  const { verificarToken, token,} = useContext(AutenticadoContexto);
-  verificarToken();
+  const { verificarToken, token } = useContext(AutenticadoContexto)
+    verificarToken()
+  
   
 
   const Iid = localStorage.getItem("@id");
@@ -50,7 +51,6 @@ export default function DashBoardPersonal() {
       <Header />
       <HeaderCadastroAluno onAlunoCadastrado={consultarDadosUsuarios} />
       <Loading loading={loading} /> 
-
       <section className="dashboard-links">
         <div className="dashboard-card">
           <Link to="/cliente/lista" className="dashboard-link">

@@ -1,22 +1,22 @@
 import { useState } from "react";
 import Popup from "../popupConectaAluno/popupConectaAluno";
-import { Personalapi } from "../../../api/personalApi";
 import "./headerCadastroAluno.css";
+import { ConviteApi } from "../../../api/conviteApi";
 
 const HeaderCadastroAluno = ({ onAlunoCadastrado }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [aluno, setAluno] = useState("");
+  const [email, setEmail] = useState("");
 
   const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
   const Iid = localStorage.getItem("@id");
   const ID = JSON.parse(Iid);
 
-  const enviarAlteracao = async (e) => {
+  const EnviarConvite = async (e) => {
     e.preventDefault();
     try {
-      await Personalapi.alteracao(aluno, ID);
-      setAluno("");
+      await ConviteApi.EnviarConvite(ID,email);
+      setEmail("");
       onAlunoCadastrado();
     } catch (err) {}
   };
@@ -32,9 +32,9 @@ const HeaderCadastroAluno = ({ onAlunoCadastrado }) => {
       <Popup
         isOpen={isPopupOpen}
         togglePopup={togglePopup}
-        onSubmit={enviarAlteracao}
-        aluno={aluno}
-        setAluno={setAluno}
+        onSubmit={EnviarConvite}
+        email={email}
+        setEmail={setEmail}
       />
     </section>
   );

@@ -10,6 +10,7 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     verificarToken();
+    VerificaTokenAluno();
   }, []);
 
   async function verificarToken() {
@@ -26,7 +27,7 @@ export default function AuthProvider({ children }) {
     const ID = Iid ? JSON.parse(Iid) : null;
 
     try {
-      const resposta = await apiLocal.get(`/verificaToken/${ID}`, {
+      const resposta = await apiLocal.get(`/verificaTokenPersonal/${ID}`, {
         headers: {
           Authorization: `Bearer ${tokenU}`, 
         },
@@ -42,9 +43,44 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function VerificaTokenAluno() {
+    const iToken = localStorage.getItem("@tokenaluno");
+    if (!iToken) {
+      return; 
+    }
+  
+    const tokenU = JSON.parse(iToken);
+    setToken(tokenU);
+  
+    const Iid = localStorage.getItem("@idaluno");
+    const ID = Iid ? JSON.parse(Iid) : null;
+  
+    if (!ID) {
+      toast.error("Erro: ID do usuário não encontrado.");
+      return;
+    }
+  
+    try {
+      const resposta = await apiLocal.get(`/verificaTokenAluno/${ID}`, {
+        headers: {
+          Authorization: `Bearer ${tokenU}`,
+        },
+      });
+  
+      if (resposta.data.id) {
+        setAutenticado(true);
+        localStorage.setItem("@idaluno", JSON.stringify(resposta.data.id));
+        localStorage.setItem("@nomealuno", JSON.stringify(resposta.data.nome));
+      }
+    } catch (err) {
+      setAutenticado(false);
+      toast.error("Sessão inválida ou expirada. Faça login novamente.");
+    }
+  }
+  
   async function loginEntrada(email, senha) {
     try {
-      const resposta = await apiLocal.post("/loginUsuarios", { email, senha });
+      const resposta = await apiLocal.post("/loginPersonal", { email, senha });
 
       localStorage.setItem("@id", JSON.stringify(resposta.data.id));
       localStorage.setItem("@token", JSON.stringify(resposta.data.token));
@@ -57,7 +93,25 @@ export default function AuthProvider({ children }) {
       window.location.href = "/DashBoardPersonal";
     } catch (err) {
       console.log(err);
-      
+      toast.error(err.response?.data?.message || "Erro ao fazer login");
+    }
+  }
+
+  async function loginEntradaAluno(email, senha) {
+    try {
+      const resposta = await apiLocal.post("/loginUsuarios", { email, senha });
+
+      localStorage.setItem("@idaluno", JSON.stringify(resposta.data.id));
+      localStorage.setItem("@tokenaluno", JSON.stringify(resposta.data.token));
+      localStorage.setItem("@nomealuno", JSON.stringify(resposta.data.nome));
+      localStorage.setItem("@emailaluno", JSON.stringify(resposta.data.email));
+
+      setToken(resposta.data.token);
+      setAutenticado(true);
+      toast.success("Login realizado com sucesso");
+      window.location.href = "/dashboard/aluno";
+    } catch (err) {
+      console.log(err);
       toast.error(err.response?.data?.message || "Erro ao fazer login");
     }
   }
@@ -67,6 +121,10 @@ export default function AuthProvider({ children }) {
     localStorage.removeItem("@id");
     localStorage.removeItem("@nome");
     localStorage.removeItem("@email");
+    localStorage.removeItem("@tokenaluno");
+    localStorage.removeItem("@idaluno");
+    localStorage.removeItem("@nomealuno");
+    localStorage.removeItem("@emailaluno");
 
     setToken("");
     setAutenticado(false);
@@ -75,7 +133,7 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AutenticadoContexto.Provider value={{ autenticado, loginEntrada, verificarToken, token, logout }}>
+    <AutenticadoContexto.Provider value={{ autenticado, loginEntrada, loginEntradaAluno, verificarToken, VerificaTokenAluno, token, logout }}>
       {children}
     </AutenticadoContexto.Provider>
   );

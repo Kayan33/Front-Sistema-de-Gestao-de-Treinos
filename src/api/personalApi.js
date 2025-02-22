@@ -29,23 +29,7 @@ export const Personalapi = {
     }
   },
 
-  alteracao: async (aluno, ID) => {
-    try {
-      const response = await apiLocal.put(`/AlterarDadosPersonal/${ID}`, {
-        aluno: aluno ? [aluno] : [],
-      });
-
-      toast.success(response.data.mensagem);
-    } catch (err) {
-      console.error("Erro ao cadastrar aluno", err);
-
-      toast.error(
-        err.response.data.erro ||
-          err.response.data.mensagem ||
-          "Erro ao cadastrar aluno"
-      );
-    }
-  },
+  
 
   consultaUnica: async (ID, token) => {
     try {
