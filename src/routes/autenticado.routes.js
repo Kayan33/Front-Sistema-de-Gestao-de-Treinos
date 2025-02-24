@@ -8,6 +8,7 @@ import Exercicio from "../pages/personal/Exercicio/Exercicio";
 import NotFound from "../pages/personal/NotFound/NotFound";
 import ConvitePersonal from "../components/Aluno/ConvitePersonal/ConvitePersonal";
 import DashboardAluno from "../pages/Aluno/DashboardAluno/DashboardAluno";
+import TreinoUnico from "../pages/Aluno/TreinoUnico/TreinoUnico";
 
 
 export default function Autentificado() {
@@ -23,6 +24,7 @@ export default function Autentificado() {
         <Route path="/Exercicios/:categoriaID" element={<Exercicio/>}/>
         <Route path="/convite" element={<ConvitePersonal/>}/>
         <Route path="/dashboard/aluno" element={<DashboardAluno/>}/>
+        <Route path="/treino/unico/:treinoID" element={<TreinoUnico/>}/>
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

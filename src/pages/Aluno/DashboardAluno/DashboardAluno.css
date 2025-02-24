@@ -1,4 +1,159 @@
 @import url("../../../style/variablesAluno.css");
 @import url("../../../style/global.css");
 
+.treinos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
 
+.treinos-list {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.treinos-title {
+  font-size: var(--fonte-titulo-aluno);
+  margin-bottom: 1rem;
+}
+
+.treinos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.treino-item {
+  border: 1px solid var(--cor-cinza-medio-aluno);
+  padding: var(--padding-padrao-aluno);
+  border-radius: var(--borda-arredondada-aluno);
+  background-color: var(--cor-cinza-clara-aluno);
+  box-shadow: var(--sombra-suave-aluno);
+}
+
+.treino-name {
+  font-size: var(--fonte-subtitulo-aluno);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.exercicios-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercicio-container {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--cor-cinza-medio-aluno);
+}
+
+.exercicio-category {
+  font-size: var(--fonte-menor-aluno);
+  color: var(--cor-cinza-escura-aluno);
+}
+
+.exercicio-title {
+  font-size: var(--fonte-subtitulo-aluno);
+  font-weight: 500;
+}
+
+.exercicio-sets-reps,
+.exercicio-rest {
+  font-size: var(--fonte-texto-aluno);
+  margin: 0.2rem 0;
+}
+
+.start-treino-button {
+  background-color: var(--cor-verde-aluno);
+  color: var(--cor-branca-aluno);
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: var(--borda-arredondada-aluno);
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: var(--fonte-texto-aluno);
+  transition: var(--transicao-rapida-aluno);
+  display: block;
+}
+
+.start-treino-button:hover {
+  background-color: #45a049;
+}
+
+.no-exercicio-message,
+.no-treino-message {
+  color: var(--cor-vermelho-aluno);
+  font-size: var(--fonte-texto-aluno);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.dados-usuario-personal {
+  background: var(--cor-cinza-clara-aluno);
+  padding: var(--padding-padrao-aluno);
+  border-radius: var(--borda-arredondada-aluno);
+  box-shadow: var(--sombra-suave-aluno);
+  margin: var(--margem-padrao-aluno) 0;
+}
+
+.personal-info {
+  background: var(--cor-branca-aluno);
+  padding: var(--padding-padrao-aluno);
+  border-radius: var(--borda-arredondada-aluno);
+  box-shadow: var(--sombra-forte-aluno);
+  transition: var(--transicao-media-aluno);
+}
+
+.personal-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.personal-title {
+  font-size: var(--fonte-titulo-aluno);
+  color: var(--cor-primaria-aluno);
+  margin-bottom: 0.5rem;
+}
+
+.personal-dados {
+  font-size: var(--fonte-texto-aluno);
+  color: var(--cor-preta-aluno);
+  line-height: 1.6;
+}
+
+.personal-dados p {
+  background: var(--cor-cinza-clara-aluno);
+  padding: 0.8rem;
+  border-radius: var(--borda-arredondada-aluno);
+  margin-bottom: 0.5rem;
+}
+
+.personal-sem-cadastro {
+  text-align: center;
+  background: var(--cor-branca-aluno);
+  padding: var(--padding-padrao-aluno);
+  border-radius: var(--borda-arredondada-aluno);
+  box-shadow: var(--sombra-suave-aluno);
+}
+
+.sem-personal-msg {
+  font-size: var(--fonte-subtitulo-aluno);
+  color: var(--cor-vermelho-aluno);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.personal-convite-titulo {
+  font-size: var(--fonte-titulo-aluno);
+  color: var(--cor-secundaria-aluno);
+  margin-bottom: 0.5rem;
+}
+
+.personal-convite-texto {
+  font-size: var(--fonte-texto-aluno);
+  color: var(--cor-cinza-escura-aluno);
+}
