@@ -76,7 +76,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .container-repetiçao-descanso,
@@ -135,33 +135,4 @@
    
   }
 
-  @media (max-width: 480px) {
-    .treino-details {
-      padding: 0.8rem;
-      margin-top: 0.5rem;
-    }
-  
-    .treino-title {
-      font-size: 1.3rem;
-    }
-  
-  
-    .exercicio-item-aluno {
-      padding: 0.8rem;
-    }
-  
-    .exercicio-item-aluno h4 {
-      font-size: 1.2rem;
-    }
-  
-    .exercicio-item-aluno p {
-      font-size: 0.85rem;
-    }
-  
-    .video-container iframe {
-      width: 100%;
-      height: 180px;
-    }
-  
-  }
   
