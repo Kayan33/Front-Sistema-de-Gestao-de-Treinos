@@ -1,0 +1,65 @@
+@import url("../../../style/variablesAluno.css");
+@import url("../../../style/global.css");
+.loading-treino {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--gradiente-primario-aluno);
+    color: var(--cor-branca-aluno);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: var(--padding-padrao-aluno);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.loading-icon {
+    margin-bottom: var(--margem-padrao-aluno);
+}
+
+.loading-spinner {
+    font-size: 50px;
+    animation: spin 2s infinite linear;
+    color: var(--cor-verde-aluno);
+}
+
+.loading-text {
+    font-size: var(--fonte-texto-aluno);
+    font-weight: 600;
+    animation: slideIn 1s ease-out;
+    color: var(--cor-branca-aluno); /* Cor branca para o texto */
+}
+
+/* Animações */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
