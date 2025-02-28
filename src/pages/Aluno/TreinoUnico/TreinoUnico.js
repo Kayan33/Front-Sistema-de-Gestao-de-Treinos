@@ -63,9 +63,8 @@ export default function TreinoUnico() {
           <div className="treino-details">
             <h2 className="treino-title">{dadosTreino.nome_treino}</h2>
 
-            <div className="treino-info">
+           
               <div className="treino-video">
-                <h3>Vídeo de Instrução</h3>
                 {dadosTreino.AlunoExercicio && dadosTreino.AlunoExercicio.length > 0 ? (
                   dadosTreino.AlunoExercicio.map((alunoExercicio, index) => (
                     <div key={index} className="exercicio-item-aluno">
@@ -106,7 +105,7 @@ export default function TreinoUnico() {
               <button className="iniciar-treino-button" onClick={iniciarTreino}>Iniciar Treino</button>
 
             </div>
-          </div>
+         
         ) : (
           <p>Dados do treino não encontrados.</p>
         )}
