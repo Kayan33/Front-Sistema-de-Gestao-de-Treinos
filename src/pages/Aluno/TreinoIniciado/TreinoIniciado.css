@@ -1,0 +1,161 @@
+@import url("../../../style/variablesAluno.css");
+@import url("../../../style/global.css");
+
+.treino-iniciado-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--gradiente-primario-aluno);
+  padding: var(--padding-padrao-aluno);
+  transition: background-color 0.3s ease;
+}
+
+.treino-iniciado-conteudo {
+  width: 100%;
+  max-width: 900px;
+  height: auto; 
+  background: var(--cor-cinza-clara-aluno);
+  border-radius: var(--borda-arredondada-aluno);
+  padding: 2.5rem;
+  box-shadow: var(--sombra-suave-aluno);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.treino-iniciado-categoria {
+  color: var(--cor-primaria-aluno);
+  margin-bottom: 1rem;
+}
+
+.exercicio-titulo-area {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.exercicio-titulo {
+  font-size: var(--fonte-titulo-aluno);
+  font-weight: 600;
+  color: var(--cor-preta-aluno);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.video-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.exercicio-dados-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.repeticoes-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.repeticao {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0.7rem;
+  padding: 0.6rem;
+  color: var(--cor-preta-aluno);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.repeticao-feita {
+  background-color: var(--cor-verde-aluno);
+  color: white;
+  transform: scale(1.1);
+}
+
+.repeticao:hover {
+  background-color: var(--cor-primaria-aluno);
+  transform: scale(1.1);
+}
+
+.area-botao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.botao-proximo-exercicio {
+  padding: 1rem;
+  font-size: 1.7rem;
+  background-color: var(--cor-primaria-aluno);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
+}
+
+.botao-proximo-exercicio:disabled {
+  cursor: not-allowed;
+  opacity: 0.6; 
+}
+
+.botao-proximo-exercicio:hover:not(:disabled) {
+  background-color: var(--cor-primaria-escura-aluno);
+  transform: scale(1.05);
+}
+
+.area-carregando,
+.area-erro {
+  text-align: center;
+}
+
+.area-carregando p,
+.area-erro p {
+  font-size: var(--fonte-texto-aluno);
+  font-weight: 500;
+  color: var(--cor-primaria-aluno);
+}
+
+@media (max-width: 768px) {
+  .treino-iniciado-area {
+    padding: 0; 
+    background-color: var(--cor-primaria-aluno); 
+    flex-direction: column; 
+    justify-content: flex-start;
+  }
+
+  .treino-iniciado-conteudo {
+    width: 100%;
+    max-width: 100%;
+    height: auto; 
+    padding: 1.5rem;
+    border-radius: 0;
+  }
+
+  .exercicio-titulo {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .botao-proximo-exercicio {
+    font-size: 1.5rem;
+    width: 80px;
+    height: 80px;
+    padding: 0.8rem;
+  }
+}

@@ -1,14 +1,14 @@
 @import url("../../../style/variablesAluno.css");
-
+@import url("../../../style/global.css");
 
 .container-convite {
-  position: fixed; /* Posiciona o container em relação à tela */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Fundo preto com opacidade */
-  z-index: 998; /* Coloca o fundo atrás do popup */
+  background-color: rgba(0, 0, 0, 0.6); 
+  z-index: 998; 
   display: flex;
   justify-content: center;
   align-items: center;
