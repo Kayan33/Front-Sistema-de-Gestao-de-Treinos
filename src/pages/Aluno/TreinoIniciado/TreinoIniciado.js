@@ -66,7 +66,8 @@ export default function TreinoIniciado() {
           } else {
             if (exercicioAtual < dadosTreino.AlunoExercicio.length - 1) {
               setExercicioAtual(exercicioAtual + 1);
-              const proximoExercicio = dadosTreino.AlunoExercicio[exercicioAtual + 1];
+              const proximoExercicio =
+                dadosTreino.AlunoExercicio[exercicioAtual + 1];
               setTempoRepeticao(proximoExercicio.tempoRepeticao);
             } else {
               toast.success("Treino concluído!");
@@ -85,13 +86,16 @@ export default function TreinoIniciado() {
         </div>
       ) : exercicio ? (
         <div className="treino-iniciado-conteudo">
-          <p className="treino-iniciado-categoria"><strong>Categoria:</strong> {exercicio.exercicio.categoria.categoria}</p>
+          <p className="treino-iniciado-categoria">
+            <strong>Categoria:</strong>{" "}
+            {exercicio.exercicio.categoria.categoria}
+          </p>
           <div className="exercicio-titulo-area">
-            <h2 className="exercicio-titulo">{exercicio.exercicio.nome_exercicio}</h2>
+            <h2 className="exercicio-titulo">
+              {exercicio.exercicio.nome_exercicio}
+            </h2>
           </div>
-  
-         
-  
+
           <div className="video-area">
             <iframe
               width="560"
@@ -103,26 +107,45 @@ export default function TreinoIniciado() {
               allowFullScreen
             ></iframe>
           </div>
-  
-          <p><strong>Carga Sugerida:</strong> {exercicio.cargaSugerida}kg</p>
-  
+          <div className="exercicio-info">
+            <div className="exercicio-dado">
+              <p className="exercicio-numero">{exercicio.cargaSugerida}kg</p>
+              <strong className="exercicio-titulo-carga">
+                Carga Sugerida:
+              </strong>
+            </div>
+
+            <div className="exercicio-dado">
+              <p className="exercicio-numero">{exercicio.tempoRepeticao}s</p>
+              <strong className="exercicio-titulo-carga">
+                Tempo Sugerido:
+              </strong>
+            </div>
+          </div>
+
           <div className="exercicio-dados-area">
             <div className="repeticoes-area">
               {Array.from({ length: exercicio.repeticoes }, (_, i) => (
                 <span
                   key={i}
-                  className={`repeticao ${i < (exercicio.repeticoes - repeticoesRestantes) ? "repeticao-feita" : ""}`}
+                  className={`repeticao ${
+                    i < exercicio.repeticoes - repeticoesRestantes
+                      ? "repeticao-feita"
+                      : ""
+                  }`}
                 >
                   {i + 1}
                 </span>
               ))}
             </div>
           </div>
-  
-         
-  
+
           <div className="area-botao">
-            <button className="botao-proximo-exercicio" onClick={pulaexercicio} disabled={contagemRegressiva}>
+            <button
+              className="botao-proximo-exercicio"
+              onClick={pulaexercicio}
+              disabled={contagemRegressiva}
+            >
               {contagemRegressiva ? contagemExibida : "GO"}
             </button>
           </div>
@@ -134,5 +157,4 @@ export default function TreinoIniciado() {
       )}
     </div>
   );
-  
 }

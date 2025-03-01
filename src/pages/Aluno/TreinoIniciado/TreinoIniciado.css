@@ -32,7 +32,7 @@
 
 .exercicio-titulo-area {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .exercicio-titulo {
@@ -50,28 +50,84 @@
   margin-bottom: 3rem;
 }
 
+.exercicio-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.exercicio-dado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+}
+
+.exercicio-numero {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.exercicio-titulo-carga {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+}
+
+
 .exercicio-dados-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .repeticoes-area {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
 }
 
 .repeticao {
   font-size: 1.4rem;
   font-weight: 700;
-  margin: 0 0.7rem;
-  padding: 0.6rem;
+  background-color: var(--cor-cinza-medio-aluno);
   color: var(--cor-preta-aluno);
-  border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
 }
+
+/* Criando a linha entre os círculos */
+.repeticao::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 1.5rem; /* Tamanho da linha */
+  height: 2px;
+  background-color: var(--cor-preta-aluno);
+  transform: translateY(-50%);
+}
+
+/* Remover a linha depois do último item */
+.repeticao:last-child::after {
+  display: none;
+}
+
 
 .repeticao-feita {
   background-color: var(--cor-verde-aluno);
@@ -79,16 +135,12 @@
   transform: scale(1.1);
 }
 
-.repeticao:hover {
-  background-color: var(--cor-primaria-aluno);
-  transform: scale(1.1);
-}
 
 .area-botao {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .botao-proximo-exercicio {
