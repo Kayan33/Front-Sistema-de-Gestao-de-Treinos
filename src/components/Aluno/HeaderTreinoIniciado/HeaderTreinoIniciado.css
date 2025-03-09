@@ -1,0 +1,11 @@
+.headar-aluno-voltar{
+    display: flex;
+}
+
+.cronometro{
+    display: flex;
+    gap: 5px;
+}
+.cronometro p{
+    font-size: 13px;
+}

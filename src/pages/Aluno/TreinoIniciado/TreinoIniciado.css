@@ -1,38 +1,33 @@
 @import url("../../../style/variablesAluno.css");
 @import url("../../../style/global.css");
 
-.treino-iniciado-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--gradiente-primario-aluno);
-  padding: var(--padding-padrao-aluno);
-  transition: background-color 0.3s ease;
-}
+
 
 .treino-iniciado-conteudo {
-  width: 100%;
-  max-width: 900px;
-  height: auto; 
-  background: var(--cor-cinza-clara-aluno);
-  border-radius: var(--borda-arredondada-aluno);
-  padding: 2.5rem;
-  box-shadow: var(--sombra-suave-aluno);
-  transition: all 0.3s ease;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: var(--gradiente-primario-aluno);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .treino-iniciado-categoria {
-  color: var(--cor-primaria-aluno);
+  color: var(--cor-cinza-clara-aluno);
   margin-bottom: 1rem;
+  
 }
 
 .exercicio-titulo-area {
   text-align: center;
   margin-bottom: 1rem;
+
 }
 
 .exercicio-titulo {
@@ -111,19 +106,19 @@
   position: relative;
 }
 
-/* Criando a linha entre os círculos */
+
 .repeticao::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 100%;
-  width: 1.5rem; /* Tamanho da linha */
+  width: 1.5rem; 
   height: 2px;
   background-color: var(--cor-preta-aluno);
   transform: translateY(-50%);
 }
 
-/* Remover a linha depois do último item */
+
 .repeticao:last-child::after {
   display: none;
 }
@@ -196,7 +191,6 @@
     max-width: 100%;
     height: auto; 
     padding: 1.5rem;
-    border-radius: 0;
   }
 
   .exercicio-titulo {

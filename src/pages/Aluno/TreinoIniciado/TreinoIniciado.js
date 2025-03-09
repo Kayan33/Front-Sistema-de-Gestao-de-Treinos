@@ -4,6 +4,7 @@ import { AutenticadoContexto } from "../../../context/authContexts";
 import { treinoAPI } from "../../../api/treinoApi";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import HeaderTreinoIniciado from "../../../components/Aluno/HeaderTreinoIniciado/HeaderTreinoIniciado";
 
 export default function TreinoIniciado() {
   const [dadosTreino, setDadosTreino] = useState(null);
@@ -79,7 +80,9 @@ export default function TreinoIniciado() {
   };
 
   return (
-    <div className="treino-iniciado-area">
+    <div className="dashboard-personal-container">
+       <HeaderTreinoIniciado/>
+       
       {loading ? (
         <div className="area-carregando">
           <p>Carregando treino...</p>
