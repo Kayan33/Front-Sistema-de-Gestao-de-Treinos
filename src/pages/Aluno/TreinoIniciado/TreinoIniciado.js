@@ -50,7 +50,7 @@ export default function TreinoIniciado() {
   const pulaexercicio = () => {
     if (dadosTreino && exercicio && !contagemRegressiva) {
       setContagemRegressiva(true);
-      let tempo = 10; // Começa em 10 segundos
+      let tempo = exercicio.tempoRepeticao; // Começa em 10 segundos
 
       const intervalo = setInterval(() => {
         setContagemExibida(tempo);
