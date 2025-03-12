@@ -14,7 +14,7 @@ export default function HeaderTreinoIniciado() {
   const primeiroNome = nome ? nome.split(" ")[0] : "";
 
   useEffect(() => {
-    const Cronometro = setInterval(() => {
+    const cronometro = setInterval(() => {
       setSegundos((prevSegundos) => {
         if (prevSegundos === 59) {
           setMinutos((prevMinutos) => {
@@ -29,8 +29,10 @@ export default function HeaderTreinoIniciado() {
         return prevSegundos + 1;
       });
     }, 1000);
-    return () => clearInterval(Cronometro);
+  
+    return () => clearInterval(cronometro);
   }, []);
+  
 
   const formatarTempo = (tempo) => {
     return String(tempo).padStart(2, "0");

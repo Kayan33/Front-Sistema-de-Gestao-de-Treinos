@@ -5,6 +5,7 @@ import { treinoAPI } from "../../../api/treinoApi";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import HeaderTreinoIniciado from "../../../components/Aluno/HeaderTreinoIniciado/HeaderTreinoIniciado";
+import ModalCargaUsada from "../../../components/Aluno/modalCargaUsada/modalCargaUsada";
 
 export default function TreinoIniciado() {
   const [dadosTreino, setDadosTreino] = useState(null);
@@ -15,6 +16,10 @@ export default function TreinoIniciado() {
   const [contagemRegressiva, setContagemRegressiva] = useState(false);
   const [repeticoesRestantes, setRepeticoesRestantes] = useState(0);
   const [contagemExibida, setContagemExibida] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => setIsPopupOpen(!isPopupOpen);
+  const [modalData, setModalData] = useState({ idExercicio: null, idTreino: null });
 
   const { treinoID } = useParams();
 
@@ -67,10 +72,23 @@ export default function TreinoIniciado() {
           } else {
             if (exercicioAtual < dadosTreino.AlunoExercicio.length - 1) {
               setExercicioAtual(exercicioAtual + 1);
-              const proximoExercicio =
-                dadosTreino.AlunoExercicio[exercicioAtual + 1];
+              const proximoExercicio = dadosTreino.AlunoExercicio[exercicioAtual + 1];
+              toast.success("Proximo exercício!");
+
+              // Exibir o modal para adicionar a carga
+              setModalData({
+                idExercicio: proximoExercicio.exercicio.id,
+                idTreino: dadosTreino.id,
+              });
+              setIsPopupOpen(true); // Abrir o modal
               setTempoRepeticao(proximoExercicio.tempoRepeticao);
             } else {
+               // Exibir o modal para adicionar a carga
+              setModalData({
+                idExercicio: exercicio.exercicio.id,
+                idTreino: dadosTreino.id,
+              });
+              setIsPopupOpen(true); // Abrir o modal
               toast.success("Treino concluído!");
             }
           }
@@ -81,8 +99,8 @@ export default function TreinoIniciado() {
 
   return (
     <div className="dashboard-personal-container">
-       <HeaderTreinoIniciado/>
-       
+      <HeaderTreinoIniciado />
+
       {loading ? (
         <div className="area-carregando">
           <p>Carregando treino...</p>
@@ -110,6 +128,7 @@ export default function TreinoIniciado() {
               allowFullScreen
             ></iframe>
           </div>
+
           <div className="exercicio-info">
             <div className="exercicio-dado">
               <p className="exercicio-numero">{exercicio.cargaSugerida}kg</p>
@@ -158,6 +177,15 @@ export default function TreinoIniciado() {
           <p>Erro ao carregar o exercício</p>
         </div>
       )}
+
+   
+      <ModalCargaUsada
+
+        isOpen={isPopupOpen}
+          togglePopup={togglePopup}
+        idExercicio={modalData.idExercicio}
+        idTreino={modalData.idTreino}
+      />
     </div>
   );
 }
