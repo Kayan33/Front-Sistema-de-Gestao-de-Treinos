@@ -1,0 +1,175 @@
+/* Conteúdo principal */
+.container-Treino-concluido {
+    width: 100%; 
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .conteudo-treino {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .titulo-treino-concluido {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 1.5rem;
+  }
+  
+  .mensagem-motivacional {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  /* Histórico do treino */
+  .historico-treino h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .lista-treino {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .item-historico {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .item-historico:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Detalhes de carga */
+  .detalles-carga {
+    width: 100%;
+  }
+  
+  .info-carga,
+  .info-treino,
+  .info-carga-sugerida,
+  .info-categoria {
+    display: flex;
+    align-items: center;
+    margin: 0.7rem 0;
+    font-size: 1rem;
+  }
+  
+  .icone-carga,
+  .icone-treino,
+  .icone-carga-sugerida,
+  .icone-categoria {
+    font-size: 1.6rem;
+    margin-right: 0.8rem;
+    color: #4CAF50;
+  }
+  
+  /* Botão de envio */
+  .botao-historico {
+    margin-top: 2rem;
+  }
+  
+  .btn-enviar-historico {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-enviar-historico:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsividade para mobile */
+  @media (max-width: 768px) {
+    .conteudo-treino {
+      padding: 1.5rem;
+    }
+  
+    .titulo-treino-concluido {
+      font-size: 2rem;
+    }
+  
+    .mensagem-motivacional {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  
+    .lista-treino {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .item-historico {
+      width: 100%;
+      max-width: 90%;
+    }
+  
+    .btn-enviar-historico {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Responsividade para desktop */
+  @media (min-width: 769px) {
+    .conteudo-treino {
+      padding: 3rem;
+    }
+  
+    .titulo-treino-concluido {
+      font-size: 2.5rem;
+    }
+  
+    .mensagem-motivacional {
+      font-size: 1.3rem;
+    }
+  
+    .lista-treino {
+      gap: 2rem;
+    }
+  
+    .item-historico {
+      max-width: 350px;
+    }
+  
+    .btn-enviar-historico {
+      font-size: 1.3rem;
+    }
+  }
+  
