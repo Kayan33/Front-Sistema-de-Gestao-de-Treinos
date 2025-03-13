@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function ModalCargaUsada({ isOpen, togglePopup, idExercicio, idTreino }) {
+export default function ModalCargaUsada({ isOpen, togglePopup, idExercicio, idTreino,NomeTreino,CargaSugerida,NomeCategoria,NomeExercicio }) {
   const [carga, setCarga] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function ModalCargaUsada({ isOpen, togglePopup, idExercicio, idTr
       let cargasAnteriores = JSON.parse(localStorage.getItem("cargasUtilizadas")) || [];
   
       // Adiciona a nova carga ao array SEM verificar se já existe
-      const novaCarga = { idExercicio, idTreino, carga };
+      const novaCarga = { idExercicio, idTreino, carga,NomeTreino,CargaSugerida,NomeCategoria,NomeExercicio };
       const cargasAtualizadas = [...cargasAnteriores, novaCarga];
   
       // Salva no localStorage
@@ -32,6 +32,8 @@ export default function ModalCargaUsada({ isOpen, togglePopup, idExercicio, idTr
       alert("Erro ao salvar a carga. Verifique o console.");
     }
   };
+
+  
   
 
   return (
