@@ -6,7 +6,7 @@ import { EmailAPI } from '../../../api/EmailApi';
 export default function EsqueciSenha() {
   const [email, setEmail] = useState('');
 
-  const navigate = useNavigate()
+  
 
   async function TrocaSenha(e) {
     e.preventDefault();

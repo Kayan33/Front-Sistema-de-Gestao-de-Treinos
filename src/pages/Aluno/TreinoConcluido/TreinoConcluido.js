@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function TreinoConcluido() {
   const [cargasUtilizadas, setCargasUtilizadas] = useState(null);
 
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   useEffect(() => {
     const IcargasUtilizadas = localStorage.getItem("cargasUtilizadas");
@@ -15,11 +15,12 @@ export default function TreinoConcluido() {
 
   function CadastrarHistorico() {
     try {
-        navigate("/dashboard/aluno")
+      navigate("/dashboard/aluno");
     } catch (error) {
-        
+      console.error("Erro ao redirecionar:", error);
     }
   }
+  
 
   return (
     <div className="container-Treino-concluido">

@@ -29,7 +29,7 @@ export default function AuthProvider({ children }) {
     try {
       const resposta = await apiLocal.get(`/verificaTokenPersonal/${ID}`, {
         headers: {
-          Authorization: `Bearer ${tokenU}`, 
+          Authorization: `Bearer ${tokenU}`,
         },
       });
 
@@ -46,27 +46,27 @@ export default function AuthProvider({ children }) {
   async function VerificaTokenAluno() {
     const iToken = localStorage.getItem("@tokenaluno");
     if (!iToken) {
-      return; 
+      return;
     }
-  
+
     const tokenU = JSON.parse(iToken);
     setToken(tokenU);
-  
+
     const Iid = localStorage.getItem("@idaluno");
     const ID = Iid ? JSON.parse(Iid) : null;
-  
+
     if (!ID) {
       toast.error("Erro: ID do usuário não encontrado.");
       return;
     }
-  
+
     try {
       const resposta = await apiLocal.get(`/verificaTokenAluno/${ID}`, {
         headers: {
           Authorization: `Bearer ${tokenU}`,
         },
       });
-  
+
       if (resposta.data.id) {
         setAutenticado(true);
         localStorage.setItem("@idaluno", JSON.stringify(resposta.data.id));
@@ -77,22 +77,27 @@ export default function AuthProvider({ children }) {
       toast.error("Sessão inválida ou expirada. Faça login novamente.");
     }
   }
-  
+
   async function loginEntrada(email, senha) {
     try {
       const resposta = await apiLocal.post("/loginPersonal", { email, senha });
 
-      localStorage.setItem("@id", JSON.stringify(resposta.data.id));
-      localStorage.setItem("@token", JSON.stringify(resposta.data.token));
-      localStorage.setItem("@nome", JSON.stringify(resposta.data.nome));
-      localStorage.setItem("@email", JSON.stringify(resposta.data.email));
+      if (resposta?.data?.token && resposta.data.id) {
+        localStorage.setItem("@id", JSON.stringify(resposta.data.id));
+        localStorage.setItem("@token", JSON.stringify(resposta.data.token));
+        localStorage.setItem("@nome", JSON.stringify(resposta.data.nome));
+        localStorage.setItem("@email", JSON.stringify(resposta.data.email));
 
-      setToken(resposta.data.token);
-      setAutenticado(true);
-      toast.success("Login realizado com sucesso");
-      window.location.href = "/DashBoardPersonal";
+        setToken(resposta.data.token);
+        setAutenticado(true);
+        toast.success("Login realizado com sucesso");
+        window.location.href = "/DashBoardPersonal";
+      } else {
+        throw new Error("Dados de login inválidos.");
+      }
     } catch (err) {
       console.log(err);
+
       toast.error(err.response?.data?.message || "Erro ao fazer login");
     }
   }
@@ -101,15 +106,25 @@ export default function AuthProvider({ children }) {
     try {
       const resposta = await apiLocal.post("/loginUsuarios", { email, senha });
 
-      localStorage.setItem("@idaluno", JSON.stringify(resposta.data.id));
-      localStorage.setItem("@tokenaluno", JSON.stringify(resposta.data.token));
-      localStorage.setItem("@nomealuno", JSON.stringify(resposta.data.nome));
-      localStorage.setItem("@emailaluno", JSON.stringify(resposta.data.email));
+      if (resposta?.data?.token && resposta.data.id) {
+        localStorage.setItem("@idaluno", JSON.stringify(resposta.data.id));
+        localStorage.setItem(
+          "@tokenaluno",
+          JSON.stringify(resposta.data.token)
+        );
+        localStorage.setItem("@nomealuno", JSON.stringify(resposta.data.nome));
+        localStorage.setItem(
+          "@emailaluno",
+          JSON.stringify(resposta.data.email)
+        );
 
-      setToken(resposta.data.token);
-      setAutenticado(true);
-      toast.success("Login realizado com sucesso");
-      window.location.href = "/dashboard/aluno";
+        setToken(resposta.data.token);
+        setAutenticado(true);
+        toast.success("Login realizado com sucesso");
+        window.location.href = "/dashboard/aluno";
+      } else {
+        throw new Error("Dados de login inválidos.");
+      }
     } catch (err) {
       console.log(err);
       toast.error(err.response?.data?.message || "Erro ao fazer login");
@@ -133,7 +148,17 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AutenticadoContexto.Provider value={{ autenticado, loginEntrada, loginEntradaAluno, verificarToken, VerificaTokenAluno, token, logout }}>
+    <AutenticadoContexto.Provider
+      value={{
+        autenticado,
+        loginEntrada,
+        loginEntradaAluno,
+        verificarToken,
+        VerificaTokenAluno,
+        token,
+        logout,
+      }}
+    >
       {children}
     </AutenticadoContexto.Provider>
   );
