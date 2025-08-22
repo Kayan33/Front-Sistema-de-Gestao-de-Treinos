@@ -91,12 +91,15 @@ export default function AlunoUnico() {
                     onSubmit={CadastroTreino}
                   />
 
-                  <button
+                  {/* <button
                     onClick={() => setAbrir(true)}
                     className="BTN-link-redirecionamento"
                   >
                     Consultar Treino
-                  </button>
+                  </button>   */}
+
+                  {/* COLSULTA NÃO FEITA */}
+                  
                 </div>
                 <h3>{dadosAluno.nome}</h3>
 
