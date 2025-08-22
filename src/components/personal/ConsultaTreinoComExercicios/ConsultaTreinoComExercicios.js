@@ -35,13 +35,15 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
 
   async function handleCadastrarExercicio({
     repeticoes,
-    descanso,
+    tempoRepeticao,
+    cargaSugerida,
     exercicioID,
   }) {
     try {
       await ExercicioDetalhadoApi.cadastrar(
         repeticoes,
-        descanso,
+        tempoRepeticao,
+        cargaSugerida,
         exercicioID,
         treinoId
       );
@@ -50,8 +52,8 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
     } catch (error) {}
   }
 
-  async function Troca(ID, repeticoes, descanso) {
-    await ExercicioDetalhadoApi.trocar(ID, repeticoes, descanso);
+  async function Troca(ID, repeticoes, tempoRepeticao) {
+    await ExercicioDetalhadoApi.trocar(ID, repeticoes, tempoRepeticao);
   }
 
   const handleInputChange = (e, exercicioId, tipo) => {
@@ -127,7 +129,7 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
                       Troca(
                         exercicio.id,
                         exercicio.repeticoes,
-                        exercicio.descanso
+                        exercicio.tempoRepeticao
                       );
                     }}
                   >
@@ -148,9 +150,9 @@ const ConsultaTreinoComExercicios = ({ treinoId, treinoNome, onClose }) => {
                     <input
                       type="number"
                       className="form-input-number-descanso"
-                      value={exercicio.descanso || 0}
+                      value={exercicio.tempoRepeticao || 0}
                       onChange={(e) =>
-                        handleInputChange(e, exercicio.id, "descanso")
+                        handleInputChange(e, exercicio.id, "tempoRepeticao")
                       }
                     />
                     <label>Segundos</label>

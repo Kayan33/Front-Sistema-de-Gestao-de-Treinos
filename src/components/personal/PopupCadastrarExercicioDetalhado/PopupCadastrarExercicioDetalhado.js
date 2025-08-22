@@ -12,16 +12,18 @@ const PopupCadastrarExercicioDetalhado = ({
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
   const [exercicioSelecionado, setExercicioSelecionado] = useState("");
   const [repeticoes, setRepeticoes] = useState("");
-  const [descanso, setDescanso] = useState("");
+  const [tempoRepeticao, setTempoRepeticao] = useState("");
+  const [cargaSugerida, setCargaSugerida] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!exercicioSelecionado || !repeticoes || !descanso) {
+    if (!exercicioSelecionado || !repeticoes || !tempoRepeticao) {
       toast.error("Preencha todos os campos!");
       return;
     }
-    onSubmit({ repeticoes, descanso, exercicioID: exercicioSelecionado });
+    onSubmit({ repeticoes, tempoRepeticao, cargaSugerida, exercicioID: exercicioSelecionado });
   };
+  console.log("Exercício selecionado ID:", exercicioSelecionado);
 
   return (
     isOpen && (
@@ -76,16 +78,25 @@ const PopupCadastrarExercicioDetalhado = ({
                 className="form-input-number"
                 placeholder="Repetições"
                 value={repeticoes}
-                onChange={(e) => setRepeticoes(e.target.value)}
+                onChange={(e) => setRepeticoes(Number(e.target.value))}
                 required
               />
 
               <input
                 type="number"
                 className="form-input-number"
-                placeholder="Descanso (segundos)"
-                value={descanso}
-                onChange={(e) => setDescanso(e.target.value)}
+                placeholder="tempoRepeticao (segundos)"
+                value={tempoRepeticao}
+                onChange={(e) => setTempoRepeticao(Number(e.target.value))}
+                required
+              />
+
+              <input
+                type="number"
+                className="form-input-number"
+                placeholder="Carga sugerida"
+                value={cargaSugerida}
+                onChange={(e) => setCargaSugerida(Number(e.target.value))}
                 required
               />
 

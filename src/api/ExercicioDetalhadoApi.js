@@ -2,11 +2,12 @@ import { toast } from "react-toastify";
 import apiLocal from "./apilocal/apiLocal";
 
 export const ExercicioDetalhadoApi = {
-  cadastrar: async (repeticoes, descanso, exercicioID, treinosID) => {
+  cadastrar: async (repeticoes, tempoRepeticao,cargaSugerida, exercicioID, treinosID) => {
     try {
       const resposta = await apiLocal.post(`/rotinaExercicio/${treinosID}`, {
         repeticoes:Number(repeticoes),
-        descanso:Number(descanso),
+        tempoRepeticao:Number(tempoRepeticao),
+        cargaSugerida:Number(cargaSugerida),
         exercicioID,
       });
       toast.success("Exercício cadastrado com sucesso!");
@@ -19,11 +20,11 @@ export const ExercicioDetalhadoApi = {
     }
   },
 
-  trocar: async (ID, repeticoes, descanso) => {
+  trocar: async (ID, repeticoes, tempoRepeticao) => {
     try {
       const resposta = await apiLocal.put(`AlterarotinaExercicio/${ID}`, {
         repeticoes: Number(repeticoes),
-        descanso: Number(descanso),
+        tempoRepeticao: Number(tempoRepeticao),
       });
       toast.success("Atulizado com sucesso!");
       return resposta;
