@@ -58,8 +58,10 @@ export default function TreinoConcluido() {
                     <p><strong>Categoria:</strong> {item.NomeCategoria}</p>
                   </div>
                 </div>
+                <p> <strong>{item.tempo_execucao}</strong></p>
               </li>
             ))}
+          
           </ul>
         ) : (
           <p>Não há cargas registradas.</p>

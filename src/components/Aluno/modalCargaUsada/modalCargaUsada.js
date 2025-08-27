@@ -19,7 +19,7 @@ export default function ModalCargaUsada({ isOpen, togglePopup, idExercicio, idTr
       let cargasAnteriores = JSON.parse(localStorage.getItem("cargasUtilizadas")) || [];
   
       // Adiciona a nova carga ao array SEM verificar se já existe
-      const novaCarga = { idExercicio, idTreino, carga,NomeTreino,CargaSugerida,NomeCategoria,NomeExercicio };
+      const novaCarga = { idExercicio, idTreino, carga,NomeTreino,CargaSugerida,NomeCategoria,NomeExercicio, tempo_execucao: null };
       const cargasAtualizadas = [...cargasAnteriores, novaCarga];
   
       // Salva no localStorage

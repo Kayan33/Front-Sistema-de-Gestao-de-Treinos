@@ -48,6 +48,7 @@ export default function TreinoIniciado() {
     }
   }
 
+
   useEffect(() => {
     consultarDadosUnicoTreino();
   }, [token]);
@@ -121,25 +122,44 @@ export default function TreinoIniciado() {
 
   
 
+const [tempo, setTempo] = useState({ horas: 0, minutos: 0, segundos: 0 });
+
 const handleCloseModal = () => {
   setIsPopupOpen(false);
 
   setTimeout(() => {
     if (exercicioAtual === dadosTreino.AlunoExercicio.length - 1 && repeticoesRestantes === 1) {
+
+      // usa o tempo do state
+      const tempoExecucao = 
+        String(tempo.horas).padStart(2, "0") + ":" +
+        String(tempo.minutos).padStart(2, "0") + ":" +
+        String(tempo.segundos).padStart(2, "0");
+
+        console.log(tempo.horas, tempo.minutos, tempo.segundos);
+        
+
+      let cargasAnteriores = JSON.parse(localStorage.getItem("cargasUtilizadas")) || [];
+
+      const cargasAtualizadas = cargasAnteriores.map((carga, index) => {
+        if (index === cargasAnteriores.length - 1) {
+          return { ...carga, tempo_execucao: tempoExecucao };
+        }
+        return carga;
+      });
+
+      localStorage.setItem("cargasUtilizadas", JSON.stringify(cargasAtualizadas));
       setTreinoConcluido(true);
     }
   }, 100);
 };
 
 
-
-  
-
   return treinoConcluido ? (
     <TreinoConcluido />
   ) : (
     <div className="dashboard-personal-container">
-      <HeaderTreinoIniciado />
+      <HeaderTreinoIniciado setTempo={setTempo} />
 
       {loading ? (
         <div className="area-carregando">

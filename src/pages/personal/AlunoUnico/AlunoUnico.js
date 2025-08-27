@@ -96,7 +96,7 @@ export default function AlunoUnico() {
                     className="BTN-link-redirecionamento"
                   >
                     Consultar Treino
-                  </button>   */}
+                  </button>   
 
                   {/* COLSULTA NÃO FEITA */}
                   

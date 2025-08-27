@@ -1,14 +1,15 @@
+import "./HeaderTreinoIniciado.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { TiStopwatch } from "react-icons/ti";
-import "./HeaderTreinoIniciado.css";
 import { useEffect, useState } from "react";
 
-export default function HeaderTreinoIniciado() {
+export default function HeaderTreinoIniciado({ setTempo }) {
   const [horas, setHoras] = useState(0);
   const [minutos, setMinutos] = useState(0);
   const [segundos, setSegundos] = useState(0);
 
-  const Inome = localStorage.getItem("@nomealuno");
+
+    const Inome = localStorage.getItem("@nomealuno");
   const nome = Inome ? JSON.parse(Inome) : null;
 
   const primeiroNome = nome ? nome.split(" ")[0] : "";
@@ -29,14 +30,16 @@ export default function HeaderTreinoIniciado() {
         return prevSegundos + 1;
       });
     }, 1000);
-  
+
     return () => clearInterval(cronometro);
   }, []);
-  
 
-  const formatarTempo = (tempo) => {
-    return String(tempo).padStart(2, "0");
-  };
+  // 🔹 Agora o tempo vai de fato para o componente pai
+  useEffect(() => {
+    setTempo({ horas, minutos, segundos });
+  }, [horas, minutos, segundos]);
+
+  const formatarTempo = (tempo) => String(tempo).padStart(2, "0");
 
   return (
     <header className="header-personal">
@@ -64,3 +67,4 @@ export default function HeaderTreinoIniciado() {
     </header>
   );
 }
+
